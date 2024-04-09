@@ -10,6 +10,7 @@ class MainRouter {
           child: Text('Main Page'),
         ),
       ),
+      // children: empty.routes
     ),
     GetPage(
       name: '/SignIn',
