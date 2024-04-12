@@ -7,7 +7,8 @@ class MainPageVIew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('메인페이지'),
+      child: Text('메인페이지2'),
+      
     );
   }
 }
