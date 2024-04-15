@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/layout/main_layout.dart';
+import 'package:loopy_friends/layout/start_layout.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
+import 'package:loopy_friends/view/start_page/start_page_view.dart';
 
 class MainRouter {
   static final List<GetPage> routes = [
     GetPage(
       name: '/',
-      page: () => MainLayout(
-          child: MainPageVIew(),
-        ),
-      // children: empty.routes
+      page: () => StartLayout(
+        child: StartPageView(),
       ),
-    
+      // children: empty.routes
+    ),
     GetPage(
-      name: '/SignIn',
+      name: '/main',
+      page: () => MainLayout(
+        child: MainPageVIew(),
+      ),
+    ),
+    GetPage(
+      name: '/login',
       page: () => const Scaffold(
         body: Center(
           child: Text('Second Page'),
@@ -22,7 +29,7 @@ class MainRouter {
       ),
     ),
     GetPage(
-      name: '/SignUp',
+      name: '/signup',
       page: () => const Scaffold(
         body: Center(
           child: Text('Third Page'),

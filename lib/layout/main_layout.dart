@@ -8,14 +8,15 @@ import 'package:loopy_friends/components/side_Bar/side_bar_controller.dart';
 class MainLayout extends StatelessWidget {
   final Widget child;
   MainLayout({super.key, required this.child});
-  final controller = Get.put(SideBarController());
+  final sidebarController = Get.put(SideBarController());
   @override
   Widget build(BuildContext context) {
     Get.put(MyBottomNavgationBarController());
     return Scaffold(
-      appBar: AppBar(),
-      key: controller.scaffoldKey,
-      drawer: SideBar(controller: controller),
+      
+      appBar:AppBar(),
+      key: sidebarController.scaffoldKey,
+      drawer: SideBar(controller: sidebarController),
       body:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Expanded(

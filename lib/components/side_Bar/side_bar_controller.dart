@@ -11,4 +11,8 @@ class SideBarController extends GetxController {
   void closeDrawer() {
     scaffoldKey.currentState?.openEndDrawer();
   }
+
+  bool isSelected(String route) {
+    return Get.currentRoute.contains(route);
+  }
 }
