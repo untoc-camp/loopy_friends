@@ -9,7 +9,7 @@ import '../model/test_model.dart';
 class MainPageController extends GetxController {
   final Rx<List<TestModel>> testList = Rx<List<TestModel>>([]);
 
-  final TestSevice _testSevice = TestSevice();
+  final TestService _testSevice = TestService();
 
   @override
   void onInit() {

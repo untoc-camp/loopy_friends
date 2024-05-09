@@ -10,20 +10,24 @@ abstract class AbstractTestService {
   Future<List<TestModel>> getTest();
 }
 
-class TestSevice extends GetxService implements AbstractTestService {
+class TestService extends GetxService implements AbstractTestService {
   final TestApi _testApi = TestApi();
 
   @override
   Future<List<TestModel>> getTest() async {
     try {
       Response res = await _testApi.getTest();
-      print(res.body);
-      print("-----------------");
-      List<TestModel> testModel = res.body['name']
-          .map<TestModel>((json) => TestModel.fromJson(json))
-          .toList();
 
-      return testModel;
+      // JSON 문자열을 디코드하여 Dart 객체로 변환
+      Map<String, dynamic> json = jsonDecode(res.bodyString!);
+
+      // JSON 맵을 TestModel 리스트로 변환
+      List<TestModel> testModels = [];
+      json.forEach((key, value) {
+        testModels.add(TestModel.fromJson(key, value));
+      });
+
+      return testModels;
     } catch (e) {
       rethrow;
     }
