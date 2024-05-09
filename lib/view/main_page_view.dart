@@ -10,15 +10,19 @@ class MainPageVIew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 800,
+      height: MediaQuery.of(context).size.height - 100,
       child: Obx(
-        () => ListView.builder(
-          itemCount: _controller.testListValue.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(_controller.testListValue[index].name),
-            );
-          },
+        () => Column(
+          children: [
+            ListView.builder(
+              itemCount: _controller.testListValue.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(_controller.testListValue[index].name),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
