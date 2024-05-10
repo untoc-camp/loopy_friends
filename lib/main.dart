@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/constants/colors.dart';
 import 'package:loopy_friends/router/main_rotuer.dart';
 
 void main() {
@@ -16,21 +17,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Nanum Gothic',
-        // colorScheme: ColorScheme.fromSeed(
-        //   seedColor: primaryColor,
-        // ),
-        // primaryColor: primaryColor,
-        // primaryColorLight: primaryColorLight,
-        // primaryColorDark: primaryColorDark,
-        // hintColor: hintColor,
-        // elevatedButtonTheme: elevatedButtonTheme,
-        // textButtonTheme: textButtonThemeData,
-        // outlinedButtonTheme: outlinedButtonThemeData,
-        // cardTheme: cardTheme,
-        // toggleButtonsTheme: toggleButtonsTheme,
-        // inputDecorationTheme: inputTheme,
-        // progressIndicatorTheme: progressIndicatorTheme,
-        // dataTableTheme: dataTableTheme,
+        
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: MainColor,
+        ),
+        primaryColor: MainColor,
+        primaryColorLight: MainColorLight,
+        primaryColorDark: MainColorDark,
+        hintColor: SubColor,
+
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',

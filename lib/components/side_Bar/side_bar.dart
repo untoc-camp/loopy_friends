@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:loopy_friends/components/side_Bar/side_bar_controller.dart';
 
 class SideBar extends StatelessWidget {
@@ -17,10 +16,10 @@ class SideBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: Text('Drawer Header'),
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
+            child: Text('Drawer Header'),
           ),
           ListTile(
             title: Text('Item 1'),
