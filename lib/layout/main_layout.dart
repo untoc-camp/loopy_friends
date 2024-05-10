@@ -16,17 +16,14 @@ class MainLayout extends StatelessWidget {
       appBar: AppBar(),
       key: sidebarController.scaffoldKey,
       drawer: SideBar(controller: sidebarController),
-      body:
-        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      body: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Expanded(
           child: Row(
             children: [
               Expanded(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width - 80,
-                  child: SingleChildScrollView(
-                    child: child,
-                  ),
+                  child: child,
                 ),
               ),
             ],

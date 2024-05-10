@@ -20,6 +20,7 @@ class MainPageController extends GetxController {
   Future<void> getTest() async {
     var res = await _testSevice.getTest();
     testList.value = res;
+    print(testList.value.length);
   }
 
   get testListValue => testList.value;
