@@ -1,6 +1,3 @@
-import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../service/test_service.dart';
@@ -20,7 +17,6 @@ class MainPageController extends GetxController {
   Future<void> getTest() async {
     var res = await _testSevice.getTest();
     testList.value = res;
-    print(testList.value.length);
   }
 
   get testListValue => testList.value;

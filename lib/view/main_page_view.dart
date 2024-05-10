@@ -19,7 +19,7 @@ class MainPageVIew extends StatelessWidget {
                 itemCount: _controller.testListValue.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Container(
+                    title: SizedBox(
                       height: 20,
                       child: Text(_controller.testListValue[index].name),
                     ),
