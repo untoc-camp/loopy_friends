@@ -4,6 +4,7 @@ import 'package:loopy_friends/layout/main_layout.dart';
 import 'package:loopy_friends/layout/start_layout.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
+import 'package:loopy_friends/view/test_view.dart';
 
 class MainRouter {
   static final List<GetPage> routes = [
@@ -36,5 +37,11 @@ class MainRouter {
         ),
       ),
     ),
+    GetPage(
+      name: '/test',
+      page: () => StartLayout(
+        child: TestView(),
+      ),
+    )
   ];
 }

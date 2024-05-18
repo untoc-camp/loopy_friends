@@ -19,5 +19,9 @@ class MainPageController extends GetxController {
     testList.value = res;
   }
 
+  void navigteMain() {
+    Get.toNamed('/main');
+  }
+
   get testListValue => testList.value;
 }

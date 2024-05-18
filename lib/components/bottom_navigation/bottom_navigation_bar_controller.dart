@@ -10,5 +10,6 @@ class MyBottomNavgationBarController extends GetxController {
   // 탭 이벤트가 발생할 시 selectedIndex값을 변경해줄 함수
   void changeIndex(int index) {
     selectedIndex(index);
+    
   }
 }

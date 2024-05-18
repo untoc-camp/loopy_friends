@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class StartLayout extends StatelessWidget {
   final Widget child;
-  StartLayout({super.key, required this.child});
+  const StartLayout({super.key, required this.child});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
