@@ -13,9 +13,9 @@ class MainLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(MyBottomNavgationBarController());
     return Scaffold(
-      appBar: AppBar(),
-      key: sidebarController.scaffoldKey,
-      drawer: SideBar(controller: sidebarController),
+      // appBar: AppBar(),
+      // key: sidebarController.scaffoldKey,
+      // drawer: SideBar(controller: sidebarController),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Expanded(
           child: Row(

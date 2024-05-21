@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Nanum Gothic',
-        
         colorScheme: ColorScheme.fromSeed(
           seedColor: MainColor,
         ),

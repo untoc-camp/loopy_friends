@@ -4,6 +4,7 @@ import 'package:loopy_friends/layout/main_layout.dart';
 import 'package:loopy_friends/layout/start_layout.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
+import 'package:loopy_friends/view/test_1_view.dart';
 import 'package:loopy_friends/view/test_view.dart';
 
 class MainRouter {
@@ -42,6 +43,12 @@ class MainRouter {
       page: () => StartLayout(
         child: TestView(),
       ),
-    )
+    ),
+    GetPage(
+      name: '/test1',
+      page: () => StartLayout(
+        child: Test1View(),
+      ),
+    ),
   ];
 }
