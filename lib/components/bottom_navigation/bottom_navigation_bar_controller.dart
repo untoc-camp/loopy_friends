@@ -10,6 +10,19 @@ class MyBottomNavgationBarController extends GetxController {
   // 탭 이벤트가 발생할 시 selectedIndex값을 변경해줄 함수
   void changeIndex(int index) {
     selectedIndex(index);
-    
+    switch (index) {
+      case 0:
+        Get.toNamed('/main');
+        break;
+      case 1:
+        Get.toNamed('/notice');
+        break;
+      case 2:
+        Get.toNamed('/community');
+        break;
+      case 3:
+        Get.toNamed('/setting');
+        break;
+    }
   }
 }

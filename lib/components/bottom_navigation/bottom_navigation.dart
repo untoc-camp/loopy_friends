@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import './bottom_navigation_bar_controller.dart';
 
 class MyBottomNavgationBar extends GetView<MyBottomNavgationBarController> {
-  const MyBottomNavgationBar({Key? key}) : super(key: key);
+  const MyBottomNavgationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,38 +18,54 @@ class MyBottomNavgationBar extends GetView<MyBottomNavgationBarController> {
           backgroundColor: context.theme.colorScheme.background,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: controller.selectedIndex.value == 0
-                    ? Icon(
-                        Icons.favorite,
-                        color: Colors.pink,
-                        size: 24.0,
-                        semanticLabel:
-                            'Text to announce in accessibility modes',
-                      )
-                    : Icon(
-                        Icons.favorite,
-                        color: Colors.blue,
-                        size: 24.0,
-                      ),
-                label: "tap1"),
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.home,
+                      color: controller.selectedIndex.value == 0 ? Colors.black : Colors.grey,
+                      size: 24.0,
+                      semanticLabel: 'Text to announce in accessibility modes',
+                    ),
+                  ],
+                ),
+                label: "홈"),
             BottomNavigationBarItem(
-                icon: controller.selectedIndex.value == 1
-                    ? Container(
-                        color: Colors.red,
-                      )
-                    : Container(
-                        color: Colors.blue,
-                      ),
-                label: "tap2"),
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.campaign,
+                      color: controller.selectedIndex.value == 1 ? Colors.black : Colors.grey,
+                      size: 24.0,
+                      semanticLabel: 'Text to announce in accessibility modes',
+                    ),
+                  ],
+                ),
+                label: "공지사항"),
             BottomNavigationBarItem(
-                icon: controller.selectedIndex.value == 2
-                    ? Container(
-                        color: Colors.red,
-                      )
-                    : Container(
-                        color: Colors.blue,
-                      ),
-                label: "tap3"),
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.notifications,
+                      color: controller.selectedIndex.value == 2 ? Colors.black : Colors.grey,
+                      size: 24.0,
+                      semanticLabel: 'Text to announce in accessibility modes',
+                    ),
+                  ],
+                ),
+                label: "커뮤니티"),
+            BottomNavigationBarItem(
+              icon: Column(
+                children: [
+                  Icon(
+                    Icons.more_horiz,
+                    color: controller.selectedIndex.value == 3 ? Colors.black : Colors.grey,
+                    size: 24.0,
+                    semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+                ],
+              ),
+              label: "더보기",
+            ),
           ],
         ));
   }
