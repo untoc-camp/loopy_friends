@@ -14,3 +14,5 @@ Color TextColor = Color(0xFF5C5F64);
 Color GreyColor = Color(0xFFF1F1F1);
 
 Color ErrorColor = Color(0xFFF55353);
+
+Color HintColor = Color(0xFFBDBDBD);

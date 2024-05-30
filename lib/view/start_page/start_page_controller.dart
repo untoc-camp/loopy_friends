@@ -1,12 +1,12 @@
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class StartPageController extends GetxController {
-  void loginNav() {
-    Get.toNamed('/login');
-  }
-
-  void signUpNav() {
-    Get.toNamed('/signup');
+  final idTextController = TextEditingController();
+  final pwTextController = TextEditingController();
+  
+  void loginButton() {
+    Get.toNamed('/main');
   }
 }

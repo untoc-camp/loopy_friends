@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/constants/colors.dart';
 import 'package:loopy_friends/router/main_rotuer.dart';
+import 'package:loopy_friends/themes/button_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,8 +24,10 @@ class MyApp extends StatelessWidget {
         primaryColor: MainColor,
         primaryColorLight: MainColorLight,
         primaryColorDark: MainColorDark,
-        hintColor: SubColor,
-
+        hintColor: HintColor,
+        elevatedButtonTheme: elevatedButtonTheme,
+        textButtonTheme: textButtonThemeData,
+        outlinedButtonTheme: outlinedButtonThemeData,
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
