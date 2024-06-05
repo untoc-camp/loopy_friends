@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/layout/main_layout.dart';
 import 'package:loopy_friends/layout/start_layout.dart';
+import 'package:loopy_friends/view/community_page/community_page_view.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
+import 'package:loopy_friends/view/notice_page/notice_page_view.dart';
+import 'package:loopy_friends/view/setting_page/setting_page_view.dart';
 import 'package:loopy_friends/view/setting_view.dart';
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/test_1_view.dart';
@@ -37,6 +40,24 @@ class MainRouter {
         body: Center(
           child: Text('Third Page'),
         ),
+      ),
+    ),
+    GetPage(
+      name: '/notice',
+      page: () => MainLayout(
+        child: NoticePageView(),
+      ),
+    ),
+    GetPage(
+      name: '/community',
+      page: () => MainLayout(
+        child: CommunityPageView(),
+      ),
+    ),
+    GetPage(
+      name: '/setting',
+       page: () => MainLayout(
+        child: SettingPageView(),
       ),
     ),
     GetPage(

@@ -38,7 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   file_picker: ^8.0.0+1
   http: ^1.2.0
-
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +71,10 @@ flutter:
   
     - assets/selon_logo.png
     - assets/selon_Logo_with_text.png
+    - assets/PNU_logo.png
+    - assets/CSE_logo.png
+    - assets/Onestop_logo.png
+    - assets/Schedule_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

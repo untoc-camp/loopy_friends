@@ -45,7 +45,7 @@ class MyBottomNavgationBar extends GetView<MyBottomNavgationBarController> {
                 icon: Column(
                   children: [
                     Icon(
-                      Icons.notifications,
+                      Icons.dvr,
                       color: controller.selectedIndex.value == 2 ? Colors.black : Colors.grey,
                       size: 24.0,
                       semanticLabel: 'Text to announce in accessibility modes',

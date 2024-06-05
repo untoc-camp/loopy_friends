@@ -20,7 +20,7 @@ class MainPageController extends GetxController {
   }
 
   void navigteMain() {
-    Get.toNamed('/main');
+    Get.toNamed('/login');
   }
 
   get testListValue => testList.value;
