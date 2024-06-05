@@ -52,7 +52,7 @@ class MainRouter {
       ),
     ),
     GetPage(
-      name: '/test1',
+      name: '/setting',
       page: () => MainLayout(
         child: SettingView(),
       ),
