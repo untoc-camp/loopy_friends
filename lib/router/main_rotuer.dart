@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/layout/main_layout.dart';
 import 'package:loopy_friends/layout/start_layout.dart';
+import 'package:loopy_friends/view/community/community_page_view.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
 import 'package:loopy_friends/view/setting_view.dart';
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
@@ -55,6 +56,12 @@ class MainRouter {
       name: '/test1',
       page: () => MainLayout(
         child: SettingView(),
+      ),
+    ),
+    GetPage(
+      name: '/community',
+      page: () => MainLayout(
+        child: CommunityPageView(),
       ),
     ),
   ];
