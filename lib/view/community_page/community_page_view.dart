@@ -1,11 +1,17 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/model/write_page_model.dart';
+import 'package:loopy_friends/controller/write_page_controller.dart';
 
 class CommunityPageView extends StatelessWidget {
   const CommunityPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final PostController postController = Get.put(PostController());
+
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -28,58 +34,61 @@ class CommunityPageView extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '제목',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    '내용',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(children: [
+          child: Obx(() {
+            return ListView.builder(
+              itemCount: postController.posts.length,
+              itemBuilder: (context, index) {
+                final post = postController.posts[index];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      '댓글',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                      post.title,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    SizedBox(
+                      height: 5,
                     ),
                     Text(
-                      ' | ',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                      post.content,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
                     ),
-                    Text(
-                      '작성시간',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                    SizedBox(
+                      height: 5,
                     ),
-                    Text(
-                      ' | ',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                    Row(children: [
+                      Text(
+                        '댓글',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                      ),
+                      Text(
+                        ' | ',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                      ),
+                      Text(
+                        '${post.timestamp.hour}:${post.timestamp.minute}',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                      ),
+                      Text(
+                        ' | ',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                      ),
+                      Text(
+                        '익명',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                      ),
+                    ]),
+                    Divider(
+                      thickness: 1,
+                      color: Colors.grey,
                     ),
-                    Text(
-                      '익명',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(),
-                    ),
-                  ]),
-                  Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                ],
-              ),
-            ],
-          ),
+                  ],
+                );
+              },
+            );
+          }),
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {

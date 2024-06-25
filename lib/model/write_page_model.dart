@@ -1,7 +1,7 @@
 class Post {
-  final String title;
-  final String content;
-  final DateTime timestamp;
+  String title;
+  String content;
+  DateTime timestamp;
 
   Post({
     required this.title,

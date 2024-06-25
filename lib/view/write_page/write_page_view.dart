@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/model/write_page_model.dart';
+import 'package:loopy_friends/controller/write_page_controller.dart';
 
 class WritePageView extends StatefulWidget {
   const WritePageView({super.key});
@@ -9,6 +11,10 @@ class WritePageView extends StatefulWidget {
 }
 
 class _WritePageViewState extends State<WritePageView> {
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+  final PostController postController = Get.find<PostController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +42,13 @@ class _WritePageViewState extends State<WritePageView> {
                     shape: const StadiumBorder(),
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    postController.addPost(
+                      _titleController.text,
+                      _contentController.text,
+                    );
+                    Navigator.of(context).pop();
+                  },
                   child: const Text(
                     '완료',
                     style: TextStyle(
@@ -50,7 +62,8 @@ class _WritePageViewState extends State<WritePageView> {
         body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              const TextField(
+              TextField(
+                controller: _titleController,
                 decoration: InputDecoration(
                   hintText: '제목',
                   border: InputBorder.none,
@@ -65,7 +78,8 @@ class _WritePageViewState extends State<WritePageView> {
                 thickness: 1,
                 color: Color.fromARGB(255, 203, 208, 216),
               ),
-              const TextField(
+              TextField(
+                controller: _contentController,
                 decoration: InputDecoration(
                   hintText: '내용을 입력하세요.',
                   border: InputBorder.none,
