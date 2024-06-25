@@ -10,6 +10,7 @@ import 'package:loopy_friends/view/setting_view.dart';
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/test_1_view.dart';
 import 'package:loopy_friends/view/test_view.dart';
+import 'package:loopy_friends/view/write_page/write_page_view.dart';
 
 class MainRouter {
   static final List<GetPage> routes = [
@@ -79,9 +80,9 @@ class MainRouter {
       ),
     ),
     GetPage(
-      name: '/community',
+      name: '/write',
       page: () => MainLayout(
-        child: CommunityPageView(),
+        child: WritePageView(),
       ),
     ),
   ];
