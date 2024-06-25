@@ -1,5 +1,4 @@
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/model/write_page_model.dart';
@@ -35,10 +34,11 @@ class CommunityPageView extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Obx(() {
+            var reversedPosts = postController.posts.reversed.toList();
             return ListView.builder(
-              itemCount: postController.posts.length,
+              itemCount: reversedPosts.length,
               itemBuilder: (context, index) {
-                final post = postController.posts[index];
+                final post = reversedPosts[index];
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
