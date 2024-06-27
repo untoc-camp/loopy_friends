@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loopy_friends/model/write_page_model.dart';
 import 'package:loopy_friends/controller/write_page_controller.dart';
 
 class WritePageView extends StatefulWidget {

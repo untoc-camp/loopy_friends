@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loopy_friends/view/total_council_page/total_council_view.dart';
+import 'package:loopy_friends/view/notice_list_page/notice_list_view.dart';
+import 'package:loopy_friends/controller/notice_list_controller.dart';
 
 class NoticePageView extends StatefulWidget {
   const NoticePageView({super.key});
@@ -11,6 +12,7 @@ class NoticePageView extends StatefulWidget {
 
 class _NoticePageViewState extends State<NoticePageView> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final NoticeController noticeController = Get.put(NoticeController());
 
   @override
   void initState() {
@@ -48,10 +50,10 @@ class _NoticePageViewState extends State<NoticePageView> with SingleTickerProvid
       body: TabBarView(
         controller: _tabController,
         children: [
-          TotalCouncilPageView(),
-          Center(child: Text('과학생회')),
-          Center(child: Text('학과 공지')),
-          Center(child: Text('신청/모집')),
+          NoticeListView(data: noticeController.totalCouncilData),
+          NoticeListView(data: noticeController.departmentCouncilData),
+          NoticeListView(data: noticeController.departmentNoticeData),
+          NoticeListView(data: noticeController.applyRecruitData),
         ],
       ),
     );

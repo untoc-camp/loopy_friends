@@ -11,8 +11,8 @@ import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/test_1_view.dart';
 import 'package:loopy_friends/view/test_view.dart';
 import 'package:loopy_friends/view/write_page/write_page_view.dart';
-import 'package:loopy_friends/view/total_council_page/total_council_view.dart';
-import 'package:loopy_friends/view/detail_page/detail_page_view.dart';
+import 'package:loopy_friends/view/notice_list_page/notice_list_view.dart';
+import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart';
 
 class MainRouter {
   static final List<GetPage> routes = [
@@ -85,12 +85,6 @@ class MainRouter {
       name: '/write',
       page: () => MainLayout(
         child: WritePageView(),
-      ),
-    ),
-    GetPage(
-      name: '/total',
-      page: () => MainLayout(
-        child: TotalCouncilPageView(),
       ),
     ),
     GetPage(
