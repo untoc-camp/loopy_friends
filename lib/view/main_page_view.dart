@@ -116,35 +116,39 @@ class MainPageVIew extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            Wrap(
-              spacing: 30,
+            Row(
               children: [
-                const SizedBox(
-                  width: 1,
-                ),
-                _buildIconColumn(
-                  context,
-                  "assets/PNU_logo.png",
-                  "부산대\n홈",
-                  "https://pusan.ac.kr/kor/Main.do",
-                ),
-                _buildIconColumn(
-                  context,
-                  "assets/Onestop_logo.png",
-                  "부산대\n학지시",
-                  "https://onestop.pusan.ac.kr/login",
-                ),
-                _buildIconColumn(
-                  context,
-                  "assets/CSE_logo.png",
-                  "부산대\n정컴",
-                  "https://cse.pusan.ac.kr/cse/index.do",
-                ),
-                _buildIconColumn(
-                  context,
-                  "assets/Schedule_logo.png",
-                  "학사\n일정",
-                  "https://www.pusan.ac.kr/pusan/index.do",
+                Wrap(
+                  spacing: 30,
+                  children: [
+                    const SizedBox(
+                      width: 1,
+                    ),
+                    _buildIconColumn(
+                      context,
+                      "assets/PNU_logo.png",
+                      "부산대\n홈",
+                      "https://pusan.ac.kr/kor/Main.do",
+                    ),
+                    _buildIconColumn(
+                      context,
+                      "assets/Onestop_logo.png",
+                      "부산대\n학지시",
+                      "https://onestop.pusan.ac.kr/login",
+                    ),
+                    _buildIconColumn(
+                      context,
+                      "assets/CSE_logo.png",
+                      "부산대\n정컴",
+                      "https://cse.pusan.ac.kr/cse/index.do",
+                    ),
+                    _buildIconColumn(
+                      context,
+                      "assets/Schedule_logo.png",
+                      "학사\n일정",
+                      "https://www.pusan.ac.kr/pusan/index.do",
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -169,11 +173,14 @@ class MainPageVIew extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 10),
             Container(
               height: 200,
-              width: double.infinity,
-              color: Colors.white,
+              width: 340,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: Center(
                 child: Text(
                   "커뮤니티 콘텐츠",
