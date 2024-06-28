@@ -61,7 +61,12 @@ class MainPageVIew extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Icon(Icons.account_circle, size: 35),
+                IconButton(
+                  icon: Icon(Icons.account_circle, size: 35),
+                  onPressed: () {
+                    Get.toNamed('/setting');
+                  },
+                )
               ],
             ),
             const SizedBox(
@@ -121,7 +126,7 @@ class MainPageVIew extends StatelessWidget {
                   context,
                   "assets/PNU_logo.png",
                   "부산대\n홈",
-                  "https://www.pusan.ac.kr/pusan/index.do",
+                  "https://pusan.ac.kr/kor/Main.do",
                 ),
                 _buildIconColumn(
                   context,

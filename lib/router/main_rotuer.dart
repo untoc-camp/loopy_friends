@@ -11,7 +11,6 @@ import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/test_1_view.dart';
 import 'package:loopy_friends/view/test_view.dart';
 import 'package:loopy_friends/view/write_page/write_page_view.dart';
-import 'package:loopy_friends/view/notice_list_page/notice_list_view.dart';
 import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart';
 
 class MainRouter {
