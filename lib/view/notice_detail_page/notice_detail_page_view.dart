@@ -19,7 +19,7 @@ class DetailPageView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 15.0),
               child: Container(
                   width: 340,
-                  height: 500,
+                  height: 700,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12.0),
