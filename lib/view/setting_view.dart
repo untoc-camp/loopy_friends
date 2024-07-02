@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-<<<<<<< Updated upstream
-class SettingController extends GetxController {
-  // 여기에 필요한 상태 변수와 메서드 추가
-}
+// class SettingController extends GetxController {
+//   // 여기에 필요한 상태 변수와 메서드 추가
+// }
 
 class SettingView extends StatelessWidget {
+  const SettingView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,24 +128,6 @@ class SettingView extends StatelessWidget {
           ],
         ),
       ),
-=======
-class SettingView extends StatelessWidget {
-  const SettingView({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [Icon(Icons.arrow_back_sharp), Text('내 정보')],
-        ),
-        Container(
-          color: Colors.black,
-          width: double.infinity,
-          height: 400,
-          margin: const EdgeInsets.all(8.0),
-        )
-      ],
->>>>>>> Stashed changes
     );
   }
 }
