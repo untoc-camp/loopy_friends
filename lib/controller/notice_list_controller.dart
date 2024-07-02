@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:loopy_friends/model/notice_list_model.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class NoticeController extends GetxController {
   var totalCouncilData = <Notice>[].obs;
@@ -10,33 +12,96 @@ class NoticeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    fetchTotalCouncilData();
+    fetchDepartmentCouncilData();
+    fetchDepartmentNoticeData();
+    fetchApplyRecruitData();
+  }
 
-    totalCouncilData.addAll([
-      Notice(title: '총학생회 공지1', date: '2024.06.27', detail: '총학생회 공지1 내용입니다. 많관부 !'),
-      Notice(title: '총학생회 공지2', date: '2024.06.28', detail: '총학생회 공지2 내용입니다. 많관부 !'),
-      Notice(title: '총학생회 공지3', date: '2024.06.29', detail: '총학생회 공지3 내용입니다. 많관부 !'),
-      Notice(title: '총학생회 공지4', date: '2024.06.30', detail: '총학생회 공지4 내용입니다. 많관부 !'),
-    ]);
+  Future<void> fetchTotalCouncilData() async {
+    final response = await http.get(Uri.parse('http://61.79.18.241:8000/notice'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      totalCouncilData.value = data.map((json) => Notice.fromJson(json)).toList();
+    } else {
+      throw Exception('정보 읽어오기를 실패하였습니다.');
+    }
+  }
 
-    departmentCouncilData.addAll([
-      Notice(title: '학생회 공지1', date: '2024.06.27', detail: '학생회 공지1 내용입니다. 많관부 !'),
-      Notice(title: '학생회 공지2', date: '2024.06.28', detail: '학생회 공지2 내용입니다. 많관부 !'),
-      Notice(title: '학생회 공지3', date: '2024.06.29', detail: '학생회 공지3 내용입니다. 많관부 !'),
-      Notice(title: '학생회 공지4', date: '2024.06.30', detail: '학생회 공지4 내용입니다. 많관부 !')
-    ]);
+  Future<void> fetchDepartmentCouncilData() async {
+    final response = await http.get(Uri.parse('http://61.79.18.241:8000/notice'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      departmentCouncilData.value = data.map((json) => Notice.fromJson(json)).toList();
+    } else {
+      throw Exception('정보 읽어오기를 실패하였습니다.');
+    }
+  }
 
-    departmentNoticeData.addAll([
-      Notice(title: '학과 공지1', date: '2024.06.27', detail: '학과 공지1 내용입니다. 많관부 !'),
-      Notice(title: '학과 공지2', date: '2024.06.28', detail: '학과 공지2 내용입니다. 많관부 !'),
-      Notice(title: '학과 공지3', date: '2024.06.29', detail: '학과 공지3 내용입니다. 많관부 !'),
-      Notice(title: '학과 공지4', date: '2024.06.30', detail: '학과 공지4 내용입니다. 많관부 !')
-    ]);
+  Future<void> fetchDepartmentNoticeData() async {
+    final response = await http.get(Uri.parse('http://61.79.18.241:8000/notice'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      departmentNoticeData.value = data.map((json) => Notice.fromJson(json)).toList();
+    } else {
+      throw Exception('정보 읽어오기를 실패하였습니다.');
+    }
+  }
 
-    applyRecruitData.addAll([
-      Notice(title: '모집공고1', date: '2024.06.27', detail: '모집공고1 내용입니다. 많관부 !'),
-      Notice(title: '모집공고2', date: '2024.06.28', detail: '모집공고2 내용입니다. 많관부 !'),
-      Notice(title: '모집공고3', date: '2024.06.29', detail: '모집공고3 내용입니다. 많관부 !'),
-      Notice(title: '모집공고4', date: '2024.06.30', detail: '모집공고4 내용입니다. 많관부 !'),
-    ]);
+  Future<void> fetchApplyRecruitData() async {
+    final response = await http.get(Uri.parse('http://61.79.18.241:8000/notice'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      applyRecruitData.value = data.map((json) => Notice.fromJson(json)).toList();
+    } else {
+      throw Exception('정보 읽어오기를 실패하였습니다.');
+    }
+  }
+
+  Future<void> addNotice(String category, Notice notice) async {
+    String url;
+    switch (category) {
+      case 'totalCouncil':
+        url = 'http://61.79.18.241:8000/notice';
+        break;
+      case 'departmentCouncil':
+        url = 'http://61.79.18.241:8000/notice';
+        break;
+      case 'departmentNotice':
+        url = 'http://61.79.18.241:8000/notice';
+        break;
+      case 'applyRecruit':
+        url = 'http://61.79.18.241:8000/notice';
+        break;
+      default:
+        throw Exception('잘못된 카테고리입니다.');
+    }
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(notice.toJson()),
+    );
+
+    if (response.statusCode == 201) {
+      switch (category) {
+        case 'totalCouncil':
+          totalCouncilData();
+          break;
+        case 'departmentCouncil':
+          departmentCouncilData();
+          break;
+        case 'departmentNotice':
+          departmentNoticeData();
+          break;
+        case 'applyRecruit':
+          applyRecruitData();
+          break;
+      }
+    } else {
+      throw Exception('정보 추가를 실패하였습니다.');
+    }
   }
 }

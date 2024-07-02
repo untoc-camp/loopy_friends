@@ -50,10 +50,10 @@ class _NoticePageViewState extends State<NoticePageView> with SingleTickerProvid
       body: TabBarView(
         controller: _tabController,
         children: [
-          NoticeListView(data: noticeController.totalCouncilData),
-          NoticeListView(data: noticeController.departmentCouncilData),
-          NoticeListView(data: noticeController.departmentNoticeData),
-          NoticeListView(data: noticeController.applyRecruitData),
+          NoticeListView(category: 'totalCouncil'),
+          NoticeListView(category: 'departmentCouncil'),
+          NoticeListView(category: 'departmentNotice'),
+          NoticeListView(category: 'applyRecruit'),
         ],
       ),
     );

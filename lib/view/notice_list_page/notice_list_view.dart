@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/controller/notice_list_controller.dart';
 import 'package:loopy_friends/model/notice_list_model.dart';
 import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart';
 
 class NoticeListView extends StatelessWidget {
-  final RxList<Notice> data;
+  final NoticeController noticeController = Get.put(NoticeController());
+  final String category;
 
-  const NoticeListView({super.key, required this.data});
+  NoticeListView({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
+    RxList<Notice> data;
+    switch (category) {
+      case 'totalCouncil':
+        data = noticeController.totalCouncilData;
+        break;
+      case 'departmentCouncil':
+        data = noticeController.departmentCouncilData;
+        break;
+      case 'departmentNotice':
+        data = noticeController.departmentNoticeData;
+        break;
+      case 'applyRecruit':
+        data = noticeController.applyRecruitData;
+        break;
+      default:
+        throw Exception('Invalid category');
+    }
+
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 246, 246, 246),
         body: Padding(
@@ -26,7 +46,7 @@ class NoticeListView extends StatelessWidget {
                       child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
                           child: Container(
-                            height: 100,
+                            height: 300,
                             width: 340,
                             decoration: BoxDecoration(
                               color: Color.fromARGB(255, 212, 221, 232),
