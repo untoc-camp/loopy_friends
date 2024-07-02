@@ -64,7 +64,7 @@ class NoticeListView extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         )),
                                     SizedBox(height: 10),
-                                    Text(data[reversedIndex].date,
+                                    Text(data[reversedIndex].created_at,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 14,

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:loopy_friends/model/notice_list_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../constants/url.dart';
 
 class NoticeController extends GetxController {
   var totalCouncilData = <Notice>[].obs;
@@ -19,7 +20,7 @@ class NoticeController extends GetxController {
   }
 
   Future<void> fetchNoticeData(String category) async {
-    String url = 'http://61.79.18.241:8000/notice';
+    String url = '${Urls.apiUrl}notice';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       String bodyUtf8 = utf8.decode(response.bodyBytes);
