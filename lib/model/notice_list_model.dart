@@ -1,15 +1,15 @@
 class Notice {
+  final int id;
   final String title;
   final String created_at;
-  final String content;
 
-  Notice({required this.title, required this.created_at, required this.content});
+  Notice({required this.title, required this.created_at, required this.id});
 
   factory Notice.fromJson(Map<String, dynamic> json) {
     return Notice(
       title: json['title'] ?? '',
       created_at: json['created_at'] ?? '',
-      content: json['content'] ?? '',
+      id: json['id'] ?? '',
     );
   }
 
@@ -17,7 +17,7 @@ class Notice {
     return {
       'title': title,
       'created_at': created_at,
-      'content': content,
+      'id': id,
     };
   }
 }
