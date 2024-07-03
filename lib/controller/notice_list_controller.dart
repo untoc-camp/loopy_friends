@@ -20,7 +20,7 @@ class NoticeController extends GetxController {
   }
 
   Future<void> fetchNoticeData(String category) async {
-    String url = '${Urls.apiUrl}notice';
+    String url = '${Urls.apiUrl}notice?category=$category';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       String bodyUtf8 = utf8.decode(response.bodyBytes);
