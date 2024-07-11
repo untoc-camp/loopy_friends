@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-// class SettingController extends GetxController {
-//   // 여기에 필요한 상태 변수와 메서드 추가
-// }
+import 'package:get/get.dart';
 
 class SettingPageView extends StatelessWidget {
   const SettingPageView({super.key});
@@ -10,9 +7,6 @@ class SettingPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('내 정보'),
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -20,37 +14,48 @@ class SettingPageView extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  Icon(Icons.arrow_back_sharp),
+                  IconButton(
+                    icon: Icon(Icons.arrow_back_sharp),
+                    onPressed: () {
+                      Get.toNamed('/main');
+                    },
+                  ),
                   SizedBox(width: 8),
-                  Text('내 정보', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text('내 프로필', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
-            Container(
-              color: Colors.black,
-              width: double.infinity,
-              height: 400,
-              margin: const EdgeInsets.all(8.0),
-            ),
-            ListTile(
-              leading: CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.orange,
-                child: Icon(Icons.person, color: Colors.white, size: 40),
-              ),
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('이름', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  Text('부산대 정보컴퓨터공학부'),
-                  Text('N학번 / 재학생'),
-                ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(width: 16),
+                    Container(
+                      width: 300, // 원하는 너비로 설정
+                      child: ProfileCard(
+                        name: '이름',
+                        details: '김아무개',
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Container(
+                      width: 300, // 원하는 너비로 설정
+                      child: ProfileCard(
+                        name: '닉네임',
+                        details: 'superman',
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                  ],
+                ),
               ),
             ),
             ListTile(
               leading: Icon(Icons.account_circle),
               title: Text('아이디'),
-              subtitle: Text('0122heart'),
+              subtitle: Text('user id'),
             ),
             ListTile(
               leading: Icon(Icons.lock),
@@ -86,7 +91,7 @@ class SettingPageView extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.info),
               title: Text('앱 버전'),
-              subtitle: Text('7.0.28'),
+              subtitle: Text('1.0.0'),
             ),
             ListTile(
               leading: Icon(Icons.help),
@@ -127,6 +132,43 @@ class SettingPageView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ProfileCard extends StatelessWidget {
+  final String name;
+  final String details;
+
+  const ProfileCard({
+    Key? key,
+    required this.name,
+    required this.details,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.orange,
+            child: Icon(Icons.person, color: Colors.white, size: 40),
+          ),
+          SizedBox(height: 8.0),
+          Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          SizedBox(height: 4.0),
+          Text(details, style: TextStyle(fontSize: 16)),
+        ],
       ),
     );
   }
