@@ -174,17 +174,19 @@ class MainPageVIew extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10),
-            Container(
-              height: 200,
-              width: 340,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "커뮤니티 콘텐츠",
-                  style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+            Center(
+              child: Container(
+                height: 200,
+                width: 340,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Text(
+                    "커뮤니티 콘텐츠",
+                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
