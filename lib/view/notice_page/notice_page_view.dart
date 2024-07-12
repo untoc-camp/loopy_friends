@@ -19,6 +19,27 @@ class _NoticePageViewState extends State<NoticePageView> with SingleTickerProvid
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
     _tabController.index = 0;
+
+    _tabController.addListener(_handleTabSelection);
+  }
+
+  void _handleTabSelection() {
+    if (!_tabController.indexIsChanging) {
+      switch (_tabController.index) {
+        case 0:
+          noticeController.refreshData('totalCouncil');
+          break;
+        case 1:
+          noticeController.refreshData('departmentCouncil');
+          break;
+        case 2:
+          noticeController.refreshData('departmentNotice');
+          break;
+        case 3:
+          noticeController.refreshData('applyRecruit');
+          break;
+      }
+    }
   }
 
   @override

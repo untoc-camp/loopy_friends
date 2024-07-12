@@ -13,10 +13,10 @@ class NoticeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchNoticeData('totalCouncil');
-    fetchNoticeData('departmentCouncil');
-    fetchNoticeData('departmentNotice');
-    fetchNoticeData('applyRecruit');
+    refreshData('totalCouncil');
+    refreshData('departmentCouncil');
+    refreshData('departmentNotice');
+    refreshData('applyRecruit');
   }
 
   Future<void> fetchNoticeData(String category) async {
@@ -46,5 +46,30 @@ class NoticeController extends GetxController {
     } else {
       throw Exception('정보 읽어오기를 실패하였습니다. 응답 코드: ${response.statusCode}');
     }
+  }
+
+  void refreshData(String category) {
+    fetchNoticeData(category);
+  }
+
+  void updateList(String category, List<dynamic> jsonData) {
+    RxList<Notice> targetList;
+    switch (category) {
+      case 'totalCouncil':
+        targetList = totalCouncilData;
+        break;
+      case 'departmentCouncil':
+        targetList = departmentCouncilData;
+        break;
+      case 'departmentNotice':
+        targetList = departmentNoticeData;
+        break;
+      case 'applyRecruit':
+        targetList = applyRecruitData;
+        break;
+      default:
+        throw Exception('잘못된 카테고리입니다.');
+    }
+    targetList.value = jsonData.map((json) => Notice.fromJson(json)).toList();
   }
 }
