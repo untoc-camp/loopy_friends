@@ -5,7 +5,11 @@ import 'package:loopy_friends/layout/start_layout.dart';
 import 'package:loopy_friends/view/community_page/community_page_view.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
 import 'package:loopy_friends/view/notice_page/notice_page_view.dart';
+
 import 'package:loopy_friends/view/setting_page/setting_page_view.dart';
+import 'package:loopy_friends/view/setting_page/terms_of_service_view.dart';
+import 'package:loopy_friends/view/setting_page/privacy_policy_view.dart';
+
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/test_1_view.dart';
 import 'package:loopy_friends/view/test_view.dart';
@@ -59,6 +63,18 @@ class MainRouter {
       name: '/setting',
       page: () => MainLayout(
         child: SettingPageView(),
+      ),
+    ),
+    GetPage(
+      name: '/terms_of_service',
+      page: () => MainLayout(
+        child: const TermsOfServicePage(),
+      ),
+    ),
+    GetPage(
+      name: '/privacy_policy',
+      page: () => MainLayout(
+        child: const PrivacyPolicyPage(),
       ),
     ),
     GetPage(

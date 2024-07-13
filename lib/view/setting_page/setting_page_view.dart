@@ -33,7 +33,7 @@ class SettingPageView extends StatelessWidget {
                   children: [
                     SizedBox(width: 16),
                     Container(
-                      width: 300, // 원하는 너비로 설정
+                      width: 300,
                       child: ProfileCard(
                         name: '이름',
                         details: '김아무개',
@@ -41,7 +41,7 @@ class SettingPageView extends StatelessWidget {
                     ),
                     SizedBox(width: 16),
                     Container(
-                      width: 300, // 원하는 너비로 설정
+                      width: 300,
                       child: ProfileCard(
                         name: '닉네임',
                         details: 'superman',
@@ -52,83 +52,136 @@ class SettingPageView extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('아이디'),
-              subtitle: Text('user id'),
+            ButtonTile(
+              icon: Icons.account_circle,
+              title: '아이디',
+              onPressed: () {
+                Get.toNamed('/user_id');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.lock),
-              title: Text('비밀번호 변경'),
+            ButtonTile(
+              icon: Icons.lock,
+              title: '비밀번호 변경',
+              onPressed: () {
+                Get.toNamed('/change_password');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Text('이메일 변경'),
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.block),
-              title: Text('이용 제한 내역'),
-            ),
-            ListTile(
-              leading: Icon(Icons.rule),
-              title: Text('커뮤니티 이용규칙'),
-            ),
-            ListTile(
-              leading: Icon(Icons.dark_mode),
-              title: Text('다크 모드'),
-              subtitle: Text('시스템 기본값'),
-            ),
-            ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text('알림 설정'),
-            ),
-            ListTile(
-              leading: Icon(Icons.lock),
-              title: Text('암호/지문 잠금'),
+            ButtonTile(
+              icon: Icons.email,
+              title: '이메일 변경',
+              onPressed: () {
+                Get.toNamed('/change_email');
+              },
             ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('앱 버전'),
-              subtitle: Text('1.0.0'),
+            ButtonTile(
+              icon: Icons.block,
+              title: '이용 제한 내역',
+              onPressed: () {
+                Get.toNamed('/usage_restriction');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.help),
-              title: Text('문의하기'),
+            ButtonTile(
+              icon: Icons.rule,
+              title: '커뮤니티 이용규칙',
+              onPressed: () {
+                Get.toNamed('/community_rules');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.announcement),
-              title: Text('공지사항'),
+            ButtonTile(
+              icon: Icons.dark_mode,
+              title: '다크 모드',
+              subtitle: '시스템 기본값',
+              onPressed: () {
+                Get.toNamed('/dark_mode');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.privacy_tip),
-              title: Text('서비스 이용약관'),
+            ButtonTile(
+              icon: Icons.notifications,
+              title: '알림 설정',
+              onPressed: () {
+                Get.toNamed('/notification_settings');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.security),
-              title: Text('개인정보 처리방침'),
-            ),
-            ListTile(
-              leading: Icon(Icons.child_care),
-              title: Text('청소년 보호정책'),
-            ),
-            ListTile(
-              leading: Icon(Icons.code),
-              title: Text('오픈소스 라이선스'),
+            ButtonTile(
+              icon: Icons.lock,
+              title: '암호/지문 잠금',
+              onPressed: () {
+                Get.toNamed('/lock_settings');
+              },
             ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('정보 동의 설정'),
+            ButtonTile(
+              icon: Icons.info,
+              title: '앱 버전',
+              subtitle: '1.0.0',
+              onPressed: () {
+                Get.toNamed('/app_version');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('회원 탈퇴'),
+            ButtonTile(
+              icon: Icons.help,
+              title: '문의하기',
+              onPressed: () {
+                Get.toNamed('/inquiry');
+              },
             ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('로그아웃'),
+            ButtonTile(
+              icon: Icons.announcement,
+              title: '공지사항',
+              onPressed: () {
+                Get.toNamed('/announcements');
+              },
+            ),
+            ButtonTile(
+              icon: Icons.privacy_tip,
+              title: '서비스 이용약관',
+              onPressed: () {
+                Get.toNamed('/terms_of_service');
+              },
+            ),
+            ButtonTile(
+              icon: Icons.security,
+              title: '개인정보 처리방침',
+              onPressed: () {
+                Get.toNamed('/privacy_policy');
+              },
+            ),
+            ButtonTile(
+              icon: Icons.child_care,
+              title: '청소년 보호정책',
+              onPressed: () {
+                Get.toNamed('/youth_policy');
+              },
+            ),
+            ButtonTile(
+              icon: Icons.code,
+              title: '오픈소스 라이선스',
+              onPressed: () {
+                Get.toNamed('/open_source_license');
+              },
+            ),
+            Divider(),
+            ButtonTile(
+              icon: Icons.settings,
+              title: '정보 동의 설정',
+              onPressed: () {
+                Get.toNamed('/consent_settings');
+              },
+            ),
+            ButtonTile(
+              icon: Icons.exit_to_app,
+              title: '회원 탈퇴',
+              onPressed: () {
+                Get.toNamed('/withdraw');
+              },
+            ),
+            ButtonTile(
+              icon: Icons.logout,
+              title: '로그아웃',
+              onPressed: () {
+                Get.toNamed('/logout');
+              },
             ),
           ],
         ),
@@ -169,6 +222,53 @@ class ProfileCard extends StatelessWidget {
           SizedBox(height: 4.0),
           Text(details, style: TextStyle(fontSize: 16)),
         ],
+      ),
+    );
+  }
+}
+
+class ButtonTile extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final VoidCallback onPressed;
+
+  const ButtonTile({
+    Key? key,
+    required this.icon,
+    required this.title,
+    this.subtitle,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: TextButton(
+        onPressed: onPressed,
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.transparent, // 배경색을 투명하게 설정
+          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            side: BorderSide(color: Colors.transparent), // 테두리를 투명하게 설정
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.grey[700]),
+            SizedBox(width: 16.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: TextStyle(fontSize: 16.0, color: Colors.black)),
+                if (subtitle != null)
+                  Text(subtitle!, style: TextStyle(fontSize: 12.0, color: Colors.grey[700])),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
