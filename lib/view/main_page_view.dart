@@ -19,12 +19,11 @@ class MainPageView extends StatelessWidget {
   MainPageView({super.key});
 
   final _controller = Get.put(MainPageController());
-  final NoticeController noticeController = Get.put(NoticeController()); // NoticeController 인스턴스 추가
+  final NoticeTop5Controller noticeController = Get.put(NoticeTop5Controller());
 
   @override
   Widget build(BuildContext context) {
-    // 공지 데이터를 선택합니다. 여기서는 'totalCouncil' 카테고리 데이터를 사용합니다.
-    final data = noticeController.totalCouncilData;
+    final data = noticeController.noticeTop5List;
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 246, 246),

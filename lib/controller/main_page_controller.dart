@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../service/test_service.dart';
 import '../model/test_model.dart';
-
+import '../constants/url.dart';
 class MainPageController extends GetxController {
   final Rx<List<TestModel>> testList = Rx<List<TestModel>>([]);
 
@@ -53,15 +53,18 @@ class NoticeTop5Controller extends GetxController {
   }
 
   void fetchNoticeTop5() async {
+    isLoading(true);
     try {
-      isLoading(true);
-      var response = await http.get(Uri.parse('YOUR_API_ENDPOINT'));
+      var response = await http.get(Uri.parse('${Urls.apiUrl}notice_top5'));
       if (response.statusCode == 200) {
-        var jsonData = json.decode(response.body) as List;
+        String bodyUtf8 = utf8.decode(response.bodyBytes);
+        List<dynamic> jsonData = json.decode(bodyUtf8);
         noticeTop5List.value = jsonData.map((json) => NoticeTop5.fromJson(json)).toList();
       } else {
-        // 오류 처리
+        Get.snackbar('오류', '데이터를 불러오는데 실패했습니다');
       }
+    } catch (e) {
+      Get.snackbar('오류', '데이터를 불러오는 중 문제가 발생했습니다: $e');
     } finally {
       isLoading(false);
     }
