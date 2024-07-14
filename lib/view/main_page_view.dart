@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/constants/colors.dart';
 import 'package:loopy_friends/controller/main_page_controller.dart';
+import 'package:loopy_friends/controller/notice_list_controller.dart'; // NoticeController import 추가
+import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart'; // DetailPageView import 추가
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> launchURL(String url) async {
@@ -13,13 +15,17 @@ Future<void> launchURL(String url) async {
   }
 }
 
-class MainPageVIew extends StatelessWidget {
-  MainPageVIew({super.key});
+class MainPageView extends StatelessWidget {
+  MainPageView({super.key});
 
   final _controller = Get.put(MainPageController());
+  final NoticeController noticeController = Get.put(NoticeController()); // NoticeController 인스턴스 추가
 
   @override
   Widget build(BuildContext context) {
+    // 공지 데이터를 선택합니다. 여기서는 'totalCouncil' 카테고리 데이터를 사용합니다.
+    final data = noticeController.totalCouncilData;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 246, 246),
       body: SingleChildScrollView(
@@ -84,33 +90,48 @@ class MainPageVIew extends StatelessWidget {
               child: SizedBox(
                 height: 100,
                 width: MediaQuery.of(context).size.width - 16,
-                child: SingleChildScrollView(
+                child: Obx(() {
+                  return SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Wrap(
                       spacing: 8,
                       children: List.generate(5, (index) {
-                        return Container(
-                          height: 100,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 241, 241, 241),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Color.fromARGB(255, 215, 215, 215)),
-                          ),
-                          child: Center(
+                        final reversedIndex = data.length - 1 - index;
+                        return GestureDetector(
+                          onTap: () {
+                            if (data.isNotEmpty && reversedIndex >= 0) {
+                              Get.to(() => DetailPageView(), arguments: data[reversedIndex]);
+                            }
+                          },
+                          child: Container(
+                            height: 100,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 212, 221, 232),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Color.fromARGB(255, 215, 215, 215)),
+                            ),
+                            child: Center(
                               child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "${index + 1}번째 공지사항",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ))),
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  data.isNotEmpty && reversedIndex >= 0
+                                      ? data[reversedIndex].title
+                                      : "Invalid Error",
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         );
                       }),
-                    )),
+                    ),
+                  );
+                }),
               ),
             ),
             SizedBox(

@@ -116,7 +116,6 @@ class SettingPageView extends StatelessWidget {
               title: '앱 버전',
               subtitle: '1.0.0',
               onPressed: () {
-                Get.toNamed('/app_version');
               },
             ),
             ButtonTile(
