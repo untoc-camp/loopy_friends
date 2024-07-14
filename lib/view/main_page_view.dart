@@ -106,23 +106,43 @@ class MainPageView extends StatelessWidget {
                             height: 100,
                             width: 200,
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 212, 221, 232),
+                              color: Color.fromARGB(255, 241, 241, 241),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: Color.fromARGB(255, 215, 215, 215)),
                             ),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  data.isNotEmpty && reversedIndex >= 0
-                                      ? data[reversedIndex].title
-                                      : "Invalid Error",
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          data.isNotEmpty && reversedIndex >= 0
+                                              ? (data[reversedIndex].title.length > 16 ? "${data[reversedIndex].title.substring(0, 16)}..." : data[reversedIndex].title)
+                                              : "Invalid Error",
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      Text(
+                                        "D-2", // 기한 텍스트
+                                        style: const TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                           ),
