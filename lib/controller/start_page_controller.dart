@@ -25,7 +25,8 @@ class StartPageController extends GetxController {
         // 로그인 성공 처리
         var data = jsonDecode(response.body);
         var accessToken = data['access_token'];
-        await saveAccessToken(accessToken);
+        var refreshToken = data['refresh_token'];
+        await saveTokens(accessToken, refreshToken);
         Get.offAllNamed('/main');
       } else {
         // 로그인 실패 처리
@@ -45,7 +46,8 @@ class StartPageController extends GetxController {
   }
 }
 
-Future<void> saveAccessToken(String token) async {
+Future<void> saveTokens(String accessToken, String refreshToken) async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setString('access_token', token);
+  await prefs.setString('access_token', accessToken);
+  await prefs.setString('refresh_token', refreshToken);
 }
