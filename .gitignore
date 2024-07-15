@@ -64,3 +64,11 @@ macos/Flutter/GeneratedPluginRegistrant.swift
 linux/flutter/generated_plugins.cmake
 linux/flutter/generated_plugin_registrant.h
 linux/flutter/generated_plugin_registrant.cc
+
+Podfile
+macos/Flutter/Flutter-Debug.xcconfig
+macos/Flutter/Flutter-Release.xcconfig
+ios/Flutter/Debug.xcconfig
+ios/Flutter/Release.xcconfig
+.vscode/settings.json
+pubspec.yaml

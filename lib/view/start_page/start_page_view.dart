@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:loopy_friends/view/start_page/start_page_controller.dart';
+import 'package:loopy_friends/controller/start_page_controller.dart';
 
 class StartPageView extends StatelessWidget {
   StartPageView({super.key});
@@ -132,7 +132,7 @@ class StartPageView extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }

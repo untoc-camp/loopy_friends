@@ -5,6 +5,7 @@ import 'package:loopy_friends/layout/start_layout.dart';
 import 'package:loopy_friends/view/community_page/community_page_view.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
 import 'package:loopy_friends/view/notice_page/notice_page_view.dart';
+import 'package:loopy_friends/view/start_page/loading_page_view.dart';
 
 import 'package:loopy_friends/view/setting_page/setting_page_view.dart';
 import 'package:loopy_friends/view/setting_page/terms_of_service_view.dart';
@@ -22,9 +23,8 @@ class MainRouter {
     GetPage(
       name: '/',
       page: () => StartLayout(
-        child: StartPageView(),
-      ),
-      // children: empty.routes
+        child: LoadingPageView(),
+      ), // children: empty.routes
     ),
     GetPage(
       name: '/main',
@@ -34,10 +34,8 @@ class MainRouter {
     ),
     GetPage(
       name: '/login',
-      page: () => const Scaffold(
-        body: Center(
-          child: Text('Second Page'),
-        ),
+      page: () => StartLayout(
+        child: StartPageView(),
       ),
     ),
     GetPage(
