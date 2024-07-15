@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:loopy_friends/controller/start_page_controller.dart';
+import 'package:loopy_friends/controller/signup_page_controller.dart';
+import 'package:loopy_friends/view/start_page/signup_page_view.dart';
 
 class StartPageView extends StatelessWidget {
   StartPageView({super.key});
@@ -118,6 +120,9 @@ class StartPageView extends StatelessWidget {
               height: 40,
               child: Center(
                 child: GestureDetector(
+                  onTap: () {
+                    Get.to(() => SignUpPageView());
+                  },
                   child: MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: Text(
