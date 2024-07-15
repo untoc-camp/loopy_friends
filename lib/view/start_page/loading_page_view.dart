@@ -21,7 +21,7 @@ class LoadingPageView extends StatelessWidget {
               '로딩 중...',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey,
+                color: Colors.black,
               ),
             ),
           ],

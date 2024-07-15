@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/controller/setting_page_controller.dart';
 
 class SettingPageView extends StatelessWidget {
-  const SettingPageView({super.key});
+  SettingPageView({super.key});
+
+  final _controller = Get.put(SettingPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,9 @@ class SettingPageView extends StatelessWidget {
                     },
                   ),
                   SizedBox(width: 8),
-                  Text('내 프로필', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text('내 프로필',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -32,7 +37,7 @@ class SettingPageView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(width: 16),
-                    Container(
+                    SizedBox(
                       width: 300,
                       child: ProfileCard(
                         name: '이름',
@@ -40,7 +45,7 @@ class SettingPageView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 16),
-                    Container(
+                    SizedBox(
                       width: 300,
                       child: ProfileCard(
                         name: '닉네임',
@@ -115,8 +120,7 @@ class SettingPageView extends StatelessWidget {
               icon: Icons.info,
               title: '앱 버전',
               subtitle: '1.0.0',
-              onPressed: () {
-              },
+              onPressed: () {},
             ),
             ButtonTile(
               icon: Icons.help,
@@ -179,7 +183,7 @@ class SettingPageView extends StatelessWidget {
               icon: Icons.logout,
               title: '로그아웃',
               onPressed: () {
-                Get.toNamed('/logout');
+                _controller.logout();
               },
             ),
           ],
@@ -194,10 +198,10 @@ class ProfileCard extends StatelessWidget {
   final String details;
 
   const ProfileCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.details,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +221,8 @@ class ProfileCard extends StatelessWidget {
             child: Icon(Icons.person, color: Colors.white, size: 40),
           ),
           SizedBox(height: 8.0),
-          Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(name,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           SizedBox(height: 4.0),
           Text(details, style: TextStyle(fontSize: 16)),
         ],
@@ -233,12 +238,12 @@ class ButtonTile extends StatelessWidget {
   final VoidCallback onPressed;
 
   const ButtonTile({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     this.subtitle,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -261,9 +266,12 @@ class ButtonTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: TextStyle(fontSize: 16.0, color: Colors.black)),
+                Text(title,
+                    style: TextStyle(fontSize: 16.0, color: Colors.black)),
                 if (subtitle != null)
-                  Text(subtitle!, style: TextStyle(fontSize: 12.0, color: Colors.grey[700])),
+                  Text(subtitle!,
+                      style:
+                          TextStyle(fontSize: 12.0, color: Colors.grey[700])),
               ],
             ),
           ],

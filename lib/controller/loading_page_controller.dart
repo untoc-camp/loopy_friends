@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -22,7 +21,7 @@ class LoadingPageController extends GetxController {
     }
 
     // 서버에 토큰 유효성 검사 요청
-    final url = '${Urls.apiUrl}check_token'; 
+    const url = '${Urls.apiUrl}check_token';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $accessToken',
@@ -57,7 +56,7 @@ class LoadingPageController extends GetxController {
       return;
     }
 
-    final url = '${Urls.apiUrl}refresh_token'; 
+    const url = '${Urls.apiUrl}refresh_token';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $refreshToken',
