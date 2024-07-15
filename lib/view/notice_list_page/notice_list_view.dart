@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:loopy_friends/controller/notice_list_controller.dart';
 import 'package:loopy_friends/model/notice_list_model.dart';
 import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart';
+import 'package:loopy_friends/view/notice_detail_page/notice_recruit_view_page.dart';
 
 class NoticeListView extends StatelessWidget {
   final NoticeController noticeController = Get.put(NoticeController());
@@ -47,7 +48,11 @@ class NoticeListView extends StatelessWidget {
                 final reversedIndex = data.length - 1 - index;
                 return GestureDetector(
                   onTap: () {
-                    Get.to(() => DetailPageView(), arguments: data[reversedIndex]);
+                    if (category == 'applyRecruit') {
+                      Get.to(() => RecruitPageView(), arguments: data[reversedIndex]);
+                    } else {
+                      Get.to(() => DetailPageView(), arguments: data[reversedIndex]);
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
