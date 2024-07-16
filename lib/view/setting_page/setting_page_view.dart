@@ -36,17 +36,17 @@ class SettingPageView extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(width: 16),
+                    SizedBox(width: 12),
                     SizedBox(
-                      width: 300,
+                      width: 200,
                       child: ProfileCard(
                         name: '이름',
                         details: '김아무개',
                       ),
                     ),
-                    SizedBox(width: 16),
+                    SizedBox(width: 12),
                     SizedBox(
-                      width: 300,
+                      width: 200,
                       child: ProfileCard(
                         name: '닉네임',
                         details: 'superman',
@@ -58,24 +58,10 @@ class SettingPageView extends StatelessWidget {
               ),
             ),
             ButtonTile(
-              icon: Icons.account_circle,
-              title: '아이디',
-              onPressed: () {
-                Get.toNamed('/user_id');
-              },
-            ),
-            ButtonTile(
               icon: Icons.lock,
               title: '비밀번호 변경',
               onPressed: () {
                 Get.toNamed('/change_password');
-              },
-            ),
-            ButtonTile(
-              icon: Icons.email,
-              title: '이메일 변경',
-              onPressed: () {
-                Get.toNamed('/change_email');
               },
             ),
             Divider(),
@@ -106,13 +92,6 @@ class SettingPageView extends StatelessWidget {
               title: '알림 설정',
               onPressed: () {
                 Get.toNamed('/notification_settings');
-              },
-            ),
-            ButtonTile(
-              icon: Icons.lock,
-              title: '암호/지문 잠금',
-              onPressed: () {
-                Get.toNamed('/lock_settings');
               },
             ),
             Divider(),
@@ -151,13 +130,6 @@ class SettingPageView extends StatelessWidget {
               },
             ),
             ButtonTile(
-              icon: Icons.child_care,
-              title: '청소년 보호정책',
-              onPressed: () {
-                Get.toNamed('/youth_policy');
-              },
-            ),
-            ButtonTile(
               icon: Icons.code,
               title: '오픈소스 라이선스',
               onPressed: () {
@@ -170,13 +142,6 @@ class SettingPageView extends StatelessWidget {
               title: '정보 동의 설정',
               onPressed: () {
                 Get.toNamed('/consent_settings');
-              },
-            ),
-            ButtonTile(
-              icon: Icons.exit_to_app,
-              title: '회원 탈퇴',
-              onPressed: () {
-                Get.toNamed('/withdraw');
               },
             ),
             ButtonTile(
