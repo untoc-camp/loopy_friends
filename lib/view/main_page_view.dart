@@ -74,7 +74,7 @@ class MainPageView extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.account_circle, size: 35),
                   onPressed: () {
-                    Get.toNamed('/setting');
+                    _bottomNavController.changeIndex(3);
                   },
                 )
               ],

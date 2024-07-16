@@ -107,7 +107,7 @@ class MainRouter {
     ),
     GetPage(
       name: '/pwdChange',
-      page: () => MainLayout(
+      page: () => StartLayout(
         child: ChangePwdView(),
       ),
     ),
