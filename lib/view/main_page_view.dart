@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/components/bottom_navigation/bottom_navigation_bar_controller.dart';
 import 'package:loopy_friends/constants/colors.dart';
 import 'package:loopy_friends/controller/main_page_controller.dart';
 import 'package:loopy_friends/controller/notice_list_controller.dart'; // NoticeController import 추가
@@ -20,6 +21,7 @@ class MainPageView extends StatelessWidget {
 
   final _controller = Get.put(MainPageController());
   final NoticeTop5Controller noticeController = Get.put(NoticeTop5Controller());
+  final _bottomNavController = Get.put(MyBottomNavgationBarController());
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,10 @@ class MainPageView extends StatelessWidget {
                           child: Center(
                               child: Text(
                             "3",
-                            style: TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                                fontWeight: FontWeight.bold),
                           )),
                         ))
                   ],
@@ -81,7 +86,10 @@ class MainPageView extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "공지",
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -99,7 +107,8 @@ class MainPageView extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             if (data.isNotEmpty && reversedIndex >= 0) {
-                              Get.to(() => DetailPageView(), arguments: data[reversedIndex]);
+                              Get.to(() => DetailPageView(),
+                                  arguments: data[reversedIndex]);
                             }
                           },
                           child: Container(
@@ -108,10 +117,12 @@ class MainPageView extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Color.fromARGB(255, 241, 241, 241),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Color.fromARGB(255, 215, 215, 215)),
+                              border: Border.all(
+                                  color: Color.fromARGB(255, 215, 215, 215)),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -121,7 +132,12 @@ class MainPageView extends StatelessWidget {
                                       Expanded(
                                         child: Text(
                                           data.isNotEmpty && reversedIndex >= 0
-                                              ? (data[reversedIndex].title.length > 16 ? "${data[reversedIndex].title.substring(0, 16)}..." : data[reversedIndex].title)
+                                              ? (data[reversedIndex]
+                                                          .title
+                                                          .length >
+                                                      16
+                                                  ? "${data[reversedIndex].title.substring(0, 16)}..."
+                                                  : data[reversedIndex].title)
                                               : "Invalid Error",
                                           style: const TextStyle(
                                             color: Colors.black,
@@ -200,15 +216,19 @@ class MainPageView extends StatelessWidget {
               children: [
                 Text(
                   "커뮤니티",
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed('/community');
+                    _bottomNavController.changeIndex(2);
                   },
                   child: Text(
                     "바로 가기",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: TextColor, fontWeight: FontWeight.bold),
                   ),
                 )
               ],
@@ -225,7 +245,10 @@ class MainPageView extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "커뮤니티 콘텐츠",
-                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -237,7 +260,8 @@ class MainPageView extends StatelessWidget {
   }
 }
 
-Widget _buildIconColumn(BuildContext context, String image, String title, String url) {
+Widget _buildIconColumn(
+    BuildContext context, String image, String title, String url) {
   return MouseRegion(
     cursor: SystemMouseCursors.click,
     child: GestureDetector(
@@ -256,7 +280,10 @@ Widget _buildIconColumn(BuildContext context, String image, String title, String
           Text(
             title,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge
+                ?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
           ),
         ],
       ),
