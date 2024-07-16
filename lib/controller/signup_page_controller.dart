@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/constants/url.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class SignUpController extends GetxController {
   final idController = TextEditingController();

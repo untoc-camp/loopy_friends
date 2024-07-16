@@ -5,7 +5,6 @@ import 'package:loopy_friends/model/user_info.dart';
 import '../constants/url.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingPageController extends GetxController {
   final pwController = TextEditingController();

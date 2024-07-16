@@ -95,9 +95,9 @@ class StartPageView extends StatelessWidget {
                   _controller.loginButton();
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(
+                  backgroundColor: MaterialStateProperty.all(
                       Theme.of(context).colorScheme.primary),
-                  shape: WidgetStateProperty.all(
+                  shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

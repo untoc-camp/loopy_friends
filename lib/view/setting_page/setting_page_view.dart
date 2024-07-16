@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/components/bottom_navigation/bottom_navigation_bar_controller.dart';
 import 'package:loopy_friends/controller/setting_page_controller.dart';
 
 class SettingPageView extends StatelessWidget {
   SettingPageView({super.key});
 
   final SettingPageController _controller = Get.put(SettingPageController());
+  final _bottomNavController = Get.put(MyBottomNavgationBarController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class SettingPageView extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.arrow_back_sharp),
                     onPressed: () {
-                      Get.toNamed('/main');
+                      _bottomNavController.changeIndex(0);
                     },
                   ),
                   SizedBox(width: 8),

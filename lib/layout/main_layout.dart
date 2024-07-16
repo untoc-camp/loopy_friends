@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/components/bottom_navigation/bottom_navigation.dart';
 import 'package:loopy_friends/components/bottom_navigation/bottom_navigation_bar_controller.dart';
-import 'package:loopy_friends/components/side_Bar/side_bar.dart';
 import 'package:loopy_friends/components/side_Bar/side_bar_controller.dart';
 
 class MainLayout extends StatelessWidget {
