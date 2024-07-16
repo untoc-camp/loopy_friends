@@ -8,6 +8,7 @@ class SignUpPageView extends StatelessWidget {
 
   final _controller = Get.put(SignUpController());
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -63,14 +64,14 @@ class SignUpPageView extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  _controller.SignUpButton();
-                  Get.back();
+                  _controller.signUpButton();
                 },
                 child: Text('회원가입'),
               ),
             )
-          ],)
+          ],
         ),
+      ),
     );
   }
 }

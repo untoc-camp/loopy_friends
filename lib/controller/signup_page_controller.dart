@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/constants/url.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpController extends GetxController {
   final idController = TextEditingController();
@@ -9,15 +12,53 @@ class SignUpController extends GetxController {
   final nicknameController = TextEditingController();
   final gradeController = TextEditingController();
 
-  void SignUpButton() {
-    final id = idController.text;
-    final pwd = pwdController.text;
-    final pwdCheck = pwdCheckController.text;
-    final name = nameController.text;
-    final nickname = nicknameController.text;
-    final grade = gradeController.text;
+  void signUpButton() async {
+    String apiUrl = '${Urls.apiUrl}users';
+    try {
+      if (pwdController.text != pwdCheckController.text) {
+        Get.snackbar(
+          'Error',
+          '비밀번호가 일치하지 않습니다.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        return;
+      }
 
-    print("회원가입 페이지에 온 것을 환영한다.");
+      var response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          "user_id": idController.text,
+          "password": pwdController.text,
+          "realname": nameController.text,
+          "nickname": nicknameController.text,
+          "grade": int.parse(gradeController.text)
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // 회원가입 성공 처리
+        Get.snackbar(
+          '회원가입 성공',
+          '회원가입이 완료되었습니다.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        Get.offAllNamed('/login');
+      } else {
+        // 회원가입 실패 처리
+        Get.snackbar(
+          '회원가입 실패',
+          '회원가입에 실패했습니다.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to connect to the server',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 
   void onclose() {
