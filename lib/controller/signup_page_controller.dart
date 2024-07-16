@@ -13,7 +13,7 @@ class SignUpController extends GetxController {
   final gradeController = TextEditingController();
 
   void signUpButton() async {
-    String apiUrl = '${Urls.apiUrl}users';
+    String apiUrl = '${Urls.apiUrl}users/';
     try {
       if (pwdController.text != pwdCheckController.text) {
         Get.snackbar(
@@ -61,7 +61,8 @@ class SignUpController extends GetxController {
     }
   }
 
-  void onclose() {
+  @override
+  void onClose() {
     idController.dispose();
     pwdController.dispose();
     pwdCheckController.dispose();
