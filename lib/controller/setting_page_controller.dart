@@ -203,4 +203,60 @@ class SettingPageController extends GetxController {
       );
     }
   }
+
+  // 문의하기 기능 추가
+  final inquiryMessageController = TextEditingController();
+
+  Future<void> sendContactInquiry() async {
+    String apiUrl = '${Urls.apiUrl}users/contact';
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? accessToken = prefs.getString('access_token');
+
+      if (accessToken == null) {
+        Get.snackbar(
+          'Error',
+          '로그인 토큰이 없습니다. 다시 로그인 해주세요.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        return;
+      }
+
+      var response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        body: jsonEncode({
+          "message": inquiryMessageController.text,
+          "user_info": {
+            "realname": realname.value,
+            "nickname": nickname.value,
+          },
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          '문의 전송 성공',
+          '문의 내용이 성공적으로 전송되었습니다.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        inquiryMessageController.clear();
+      } else {
+        Get.snackbar(
+          '문의 전송 실패',
+          '문의 전송에 실패했습니다. ${response.body}',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        '서버 연결에 실패했습니다: $e',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
 }
