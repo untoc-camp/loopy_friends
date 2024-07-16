@@ -1,30 +1,18 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../service/test_service.dart';
-import '../model/test_model.dart';
 import '../constants/url.dart';
 class MainPageController extends GetxController {
-  final Rx<List<TestModel>> testList = Rx<List<TestModel>>([]);
-
-  final TestService _testSevice = TestService();
-
   @override
   void onInit() {
     super.onInit();
-    getTest();
   }
 
-  Future<void> getTest() async {
-    var res = await _testSevice.getTest();
-    testList.value = res;
-  }
 
   void navigteMain() {
     Get.toNamed('/login');
   }
 
-  get testListValue => testList.value;
 }
 
 

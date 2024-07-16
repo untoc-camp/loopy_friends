@@ -17,8 +17,6 @@ import 'package:loopy_friends/view/setting_page/change_nickname_view.dart';
 import 'package:loopy_friends/view/setting_page/contact_inquiry_view.dart';
 
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
-import 'package:loopy_friends/view/test_1_view.dart';
-import 'package:loopy_friends/view/test_view.dart';
 import 'package:loopy_friends/view/write_page/write_page_view.dart';
 import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart';
 
@@ -88,18 +86,6 @@ class MainRouter {
       name: '/contact_inquiry',
       page: () => MainLayout(
         child: const ContactInquiryView(),
-      ),
-    ),
-    GetPage(
-      name: '/test',
-      page: () => StartLayout(
-        child: TestView(),
-      ),
-    ),
-    GetPage(
-      name: '/test1',
-      page: () => StartLayout(
-        child: Test1View(),
       ),
     ),
     GetPage(
