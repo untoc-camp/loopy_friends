@@ -5,7 +5,7 @@ import 'package:loopy_friends/controller/setting_page_controller.dart';
 class SettingPageView extends StatelessWidget {
   SettingPageView({super.key});
 
-  final _controller = Get.put(SettingPageController());
+  final SettingPageController _controller = Get.put(SettingPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,7 @@ class SettingPageView extends StatelessWidget {
                   ),
                   SizedBox(width: 8),
                   Text('내 프로필',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -39,18 +38,18 @@ class SettingPageView extends StatelessWidget {
                     SizedBox(width: 12),
                     SizedBox(
                       width: 200,
-                      child: ProfileCard(
+                      child: Obx(() => ProfileCard(
                         name: '이름',
-                        details: '김아무개',
-                      ),
+                        details: _controller.realname.value,
+                      )),
                     ),
                     SizedBox(width: 12),
                     SizedBox(
                       width: 200,
-                      child: ProfileCard(
+                      child: Obx(() => ProfileCard(
                         name: '닉네임',
-                        details: 'superman',
-                      ),
+                        details: _controller.nickname.value,
+                      )),
                     ),
                     SizedBox(width: 16),
                   ],
@@ -157,6 +156,7 @@ class SettingPageView extends StatelessWidget {
     );
   }
 }
+
 
 class ProfileCard extends StatelessWidget {
   final String name;
