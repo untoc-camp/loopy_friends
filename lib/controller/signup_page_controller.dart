@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/constants/url.dart';
 import 'package:http/http.dart' as http;
-
+import 'dart:convert';
 class SignUpController extends GetxController {
   final idController = TextEditingController();
   final pwdController = TextEditingController();
@@ -26,7 +26,7 @@ class SignUpController extends GetxController {
           nicknameController.text.isEmpty ||
           gradeController.text.isEmpty) {
         Get.snackbar(
-          'Error',
+          '회원가입 실패',
           '모든 칸을 채워주세요.',
           snackPosition: SnackPosition.BOTTOM,
         );
@@ -36,7 +36,7 @@ class SignUpController extends GetxController {
       // 비밀번호 일치 여부 확인
       if (pwdController.text != pwdCheckController.text) {
         Get.snackbar(
-          'Error',
+          '회원가입 실패',
           '비밀번호가 일치하지 않습니다.',
           snackPosition: SnackPosition.BOTTOM,
         );
@@ -47,7 +47,7 @@ class SignUpController extends GetxController {
       if (!idPwdRegExp.hasMatch(idController.text) ||
           !idPwdRegExp.hasMatch(pwdController.text)) {
         Get.snackbar(
-          'Error',
+          '회원가입 실패',
           '아이디와 비밀번호는 영어와 숫자만 입력 가능합니다.',
           snackPosition: SnackPosition.BOTTOM,
         );
@@ -58,7 +58,7 @@ class SignUpController extends GetxController {
       if (!generalRegExp.hasMatch(nameController.text) ||
           !generalRegExp.hasMatch(nicknameController.text)) {
         Get.snackbar(
-          'Error',
+          '회원가입 실패',
           '이름과 닉네임에 특수문자를 입력할 수 없습니다.',
           snackPosition: SnackPosition.BOTTOM,
         );
@@ -69,7 +69,7 @@ class SignUpController extends GetxController {
       int? grade = int.tryParse(gradeController.text);
       if (grade == null || grade < 1 || grade > 6) {
         Get.snackbar(
-          'Error',
+          '회원가입 실패',
           '학년에는 1에서 6 사이의 숫자만 입력해주세요.',
           snackPosition: SnackPosition.BOTTOM,
         );
@@ -96,7 +96,16 @@ class SignUpController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
         );
         Get.offAllNamed('/login');
-      } else {
+      } else if (response.statusCode == 409){
+        String bodyUtf8 = utf8.decode(response.bodyBytes);
+        var responseJson = json.decode(bodyUtf8);
+        String detailMessage = responseJson['detail'];
+        Get.snackbar(
+          '회원가입 실패',
+          detailMessage,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }else{
         // 회원가입 실패 처리
         Get.snackbar(
           '회원가입 실패',
