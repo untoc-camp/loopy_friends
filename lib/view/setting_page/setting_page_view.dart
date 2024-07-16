@@ -60,6 +60,13 @@ class SettingPageView extends StatelessWidget {
               ),
             ),
             ButtonTile(
+              icon: Icons.account_circle,
+              title: '닉네임 변경',
+              onPressed: () {
+                Get.toNamed('/nicknameChange');
+              },
+            ),
+            ButtonTile(
               icon: Icons.lock,
               title: '비밀번호 변경',
               onPressed: () {

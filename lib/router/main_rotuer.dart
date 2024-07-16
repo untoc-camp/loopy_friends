@@ -4,7 +4,6 @@ import 'package:loopy_friends/layout/start_layout.dart';
 import 'package:loopy_friends/view/community_page/community_page_view.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
 import 'package:loopy_friends/view/notice_page/notice_page_view.dart';
-import 'package:loopy_friends/view/setting_page/change_pwd_view.dart';
 import 'package:loopy_friends/view/start_page/loading_page_view.dart';
 
 import 'package:loopy_friends/view/setting_page/setting_page_view.dart';
@@ -12,6 +11,8 @@ import 'package:loopy_friends/view/setting_page/terms_of_service_view.dart';
 import 'package:loopy_friends/view/setting_page/privacy_policy_view.dart';
 import 'package:loopy_friends/view/setting_page/usage_restriction_view.dart';
 import 'package:loopy_friends/view/start_page/signup_page_view.dart';
+import 'package:loopy_friends/view/setting_page/change_pwd_view.dart';
+import 'package:loopy_friends/view/setting_page/change_nickname_view.dart';
 
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/test_1_view.dart';
@@ -109,6 +110,12 @@ class MainRouter {
       name: '/pwdChange',
       page: () => StartLayout(
         child: ChangePwdView(),
+      ),
+    ),
+    GetPage(
+      name: '/nicknameChange',
+      page: () => StartLayout(
+        child: ChangeNicknameView(),
       ),
     ),
   ];
