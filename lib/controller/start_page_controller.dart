@@ -44,6 +44,10 @@ class StartPageController extends GetxController {
       );
     }
   }
+
+  void signupButton() {
+    Get.toNamed('/signup');
+  }
 }
 
 Future<void> saveTokens(String accessToken, String refreshToken) async {

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:loopy_friends/constants/url.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 class SignUpController extends GetxController {
   final idController = TextEditingController();
   final pwdController = TextEditingController();
@@ -96,7 +97,7 @@ class SignUpController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
         );
         Get.offAllNamed('/login');
-      } else if (response.statusCode == 409){
+      } else if (response.statusCode == 409) {
         String bodyUtf8 = utf8.decode(response.bodyBytes);
         var responseJson = json.decode(bodyUtf8);
         String detailMessage = responseJson['detail'];
@@ -105,7 +106,7 @@ class SignUpController extends GetxController {
           detailMessage,
           snackPosition: SnackPosition.BOTTOM,
         );
-      }else{
+      } else {
         // 회원가입 실패 처리
         Get.snackbar(
           '회원가입 실패',

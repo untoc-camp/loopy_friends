@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:loopy_friends/controller/start_page_controller.dart';
-import 'package:loopy_friends/controller/signup_page_controller.dart';
-import 'package:loopy_friends/view/start_page/signup_page_view.dart';
 
 class StartPageView extends StatelessWidget {
   StartPageView({super.key});
@@ -23,7 +20,8 @@ class StartPageView extends StatelessWidget {
           children: [
             Text(
               '정컴 생활을 더 편하고 즐겁게',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.grey[600], fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: Colors.grey[600], fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 10,
@@ -97,8 +95,9 @@ class StartPageView extends StatelessWidget {
                   _controller.loginButton();
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
-                  shape: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(
+                      Theme.of(context).colorScheme.primary),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -119,9 +118,9 @@ class StartPageView extends StatelessWidget {
               width: 300,
               height: 40,
               child: Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(() => SignUpPageView());
+                child: TextButton(
+                  onPressed: () {
+                    _controller.signupButton();
                   },
                   child: MouseRegion(
                     cursor: SystemMouseCursors.click,
