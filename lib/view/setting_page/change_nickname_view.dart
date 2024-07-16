@@ -12,7 +12,7 @@ class ChangeNicknameView extends StatefulWidget {
 
 class _ChangeNicknameViewState extends State<ChangeNicknameView> {
   final _controller = Get.put(SettingPageController());
-  final _formKey = GlobalKey<FormState>();  // formKey 추가
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,27 +51,6 @@ class _ChangeNicknameViewState extends State<ChangeNicknameView> {
                       child: ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {  // formKey 수정
-                            bool isUnique = await _controller.isUniqueNickname(_controller.nicknameController.text);
-                            bool isAllowed = await _controller.isNicknameChangeAllowed();
-
-                            if (!isUnique) {
-                              Get.snackbar(
-                                '닉네임 변경 실패',
-                                '이미 사용 중인 닉네임입니다.',
-                                snackPosition: SnackPosition.BOTTOM,
-                              );
-                              return;
-                            }
-
-                            if (!isAllowed) {
-                              Get.snackbar(
-                                '닉네임 변경 실패',
-                                '닉네임은 30일에 한 번만 변경할 수 있습니다.',
-                                snackPosition: SnackPosition.BOTTOM,
-                              );
-                              return;
-                            }
-
                             _controller.changeNickname();
                           }
                         },
@@ -80,11 +59,6 @@ class _ChangeNicknameViewState extends State<ChangeNicknameView> {
                           backgroundColor: Colors.red, // primary를 backgroundColor로 수정
                         ),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      '※ 닉네임을 설정하면 30일간 변경할 수 없습니다.',
-                      style: TextStyle(color: Colors.red),
                     ),
                   ],
                 ),

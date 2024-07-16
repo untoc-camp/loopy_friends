@@ -142,21 +142,8 @@ class SettingPageController extends GetxController {
     }
   }
 
-  // 박의진이 했음 김태우 수정 바람
-  // 닉네임 변경 기능 추가
+  
   final nicknameController = TextEditingController();
-
-  Future<bool> isUniqueNickname(String nickname) async {
-    // 닉네임 중복 체크 로직 구현 (API 호출 등)
-    // 일단 항상 true 반환
-    return true;
-  }
-
-  Future<bool> isNicknameChangeAllowed() async {
-    // 닉네임 변경 가능 여부(닉네임 변경 가능 기간이 지났는지) 체크 로직 구현 (API 호출 등)
-    // 일단 항상 true 반환
-    return true;
-  }
 
   Future<void> changeNickname() async {
     String apiUrl = '${Urls.apiUrl}users/changenickname';
@@ -191,7 +178,17 @@ class SettingPageController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
         );
         Get.offAllNamed('/setting');
-      } else {
+      }else if(response.statusCode == 409){
+        String bodyUtf8 = utf8.decode(response.bodyBytes);
+        var responseJson = json.decode(bodyUtf8);
+        String detailMessage = responseJson['detail'];
+        Get.snackbar(
+          '닉네임 변경 실패',
+          detailMessage,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      } 
+      else {
         Get.snackbar(
           '닉네임 변경 실패',
           '닉네임 변경에 실패했습니다. ${response.body}',
