@@ -1,7 +1,10 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class BaseUrl {
-  static const String baseUrl = 'http://127.0.0.1:8000';
+  static final String baseUrl =
+      dotenv.env['BASE_URL'] ?? 'http://localhost:3000';
 }
 
 class Urls {
-  static const String apiUrl = '${BaseUrl.baseUrl}/';
+  static final String apiUrl = '${BaseUrl.baseUrl}/';
 }

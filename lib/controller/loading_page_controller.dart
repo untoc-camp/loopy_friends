@@ -21,7 +21,7 @@ class LoadingPageController extends GetxController {
     }
 
     // 서버에 토큰 유효성 검사 요청
-    const url = '${Urls.apiUrl}check_token';
+    final url = '${Urls.apiUrl}check_token';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $accessToken',
@@ -56,7 +56,7 @@ class LoadingPageController extends GetxController {
       return;
     }
 
-    const url = '${Urls.apiUrl}refresh_token';
+    final url = '${Urls.apiUrl}refresh_token';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $refreshToken',

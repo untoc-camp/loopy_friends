@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:loopy_friends/constants/colors.dart';
 import 'package:loopy_friends/router/main_rotuer.dart';
 import 'package:loopy_friends/themes/button_theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: 'assets/config/.env');
   runApp(const MyApp());
 }
 
