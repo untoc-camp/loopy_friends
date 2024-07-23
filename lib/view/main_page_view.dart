@@ -41,36 +41,6 @@ class MainPageView extends StatelessWidget {
                   height: 45,
                 ),
                 const Spacer(),
-                Stack(
-                  children: [
-                    const Icon(
-                      Icons.notifications_none_outlined,
-                      size: 35,
-                    ),
-                    Positioned(
-                        right: 6,
-                        top: 4,
-                        child: Container(
-                          width: 10,
-                          height: 10,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.red,
-                          ),
-                          child: Center(
-                              child: Text(
-                            "3",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 8,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ))
-                  ],
-                ),
-                SizedBox(
-                  width: 10,
-                ),
                 IconButton(
                   icon: Icon(Icons.account_circle, size: 35),
                   onPressed: () {
@@ -173,65 +143,59 @@ class MainPageView extends StatelessWidget {
               height: 15,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Wrap(
-                  spacing: 30,
-                  children: [
-                    const SizedBox(
-                      width: 1,
-                    ),
-                    _buildIconColumn(
-                      context,
-                      "assets/PNU_logo.png",
-                      "부산대\n홈",
-                      "https://pusan.ac.kr/kor/Main.do",
-                    ),
-                    _buildIconColumn(
-                      context,
-                      "assets/Onestop_logo.png",
-                      "부산대\n학지시",
-                      "https://onestop.pusan.ac.kr/login",
-                    ),
-                    _buildIconColumn(
-                      context,
-                      "assets/CSE_logo.png",
-                      "부산대\n정컴",
-                      "https://cse.pusan.ac.kr/cse/index.do",
-                    ),
-                    _buildIconColumn(
-                      context,
-                      "assets/Schedule_logo.png",
-                      "학사\n일정",
-                      "https://www.pusan.ac.kr/pusan/index.do",
-                    ),
-                  ],
+                _buildIconColumn(
+                  context,
+                  "assets/PNU_logo.png",
+                  "부산대\n홈",
+                  "https://pusan.ac.kr/kor/Main.do",
+                ),
+                _buildIconColumn(
+                  context,
+                  "assets/Onestop_logo.png",
+                  "부산대\n학지시",
+                  "https://onestop.pusan.ac.kr/login",
+                ),
+                _buildIconColumn(
+                  context,
+                  "assets/CSE_logo.png",
+                  "부산대\n정컴",
+                  "https://cse.pusan.ac.kr/cse/index.do",
+                ),
+                _buildIconColumn(
+                  context,
+                  "assets/Schedule_logo.png",
+                  "학사\n일정",
+                  "https://www.pusan.ac.kr/kor/CMS/Haksailjung/view.do?mCode=MN076",
                 ),
               ],
             ),
             SizedBox(
               height: 30,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "커뮤니티",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    _bottomNavController.changeIndex(2);
-                  },
-                  child: Text(
-                    "바로 가기",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "커뮤니티",
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: TextColor, fontWeight: FontWeight.bold),
                   ),
-                )
-              ],
+                  GestureDetector(
+                    onTap: () {
+                      _bottomNavController.changeIndex(2);
+                    },
+                    child: Text(
+                      "바로 가기",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: TextColor, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
             ),
             SizedBox(height: 10),
             Center(
