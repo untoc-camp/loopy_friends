@@ -72,3 +72,4 @@ ios/Flutter/Debug.xcconfig
 ios/Flutter/Release.xcconfig
 .vscode/settings.json
 pubspec.yaml
+assets/config/.env
