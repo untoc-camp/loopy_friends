@@ -17,7 +17,6 @@ class NoticeListView extends StatelessWidget {
   }
 
   String calculateDday(DateTime? deadline) {
-<<<<<<< Updated upstream
     if (deadline == null) {
       return '무기한';
     }
@@ -25,10 +24,6 @@ class NoticeListView extends StatelessWidget {
     final today = DateTime(now.year, now.month, now.day);
     final targetDate = DateTime(deadline.year, deadline.month, deadline.day);
     final difference = targetDate.difference(today).inDays;
-=======
-    final now = DateTime.now();
-    final difference = deadline!.difference(now).inDays;
->>>>>>> Stashed changes
     if (difference < 0) {
       return '마감';
     } else if (difference == 0) {
@@ -38,7 +33,6 @@ class NoticeListView extends StatelessWidget {
     }
   }
 
-<<<<<<< Updated upstream
   DateTime? parseDeadline(String deadline) {
     try {
       int year = int.parse(deadline.substring(0, 4));
@@ -51,8 +45,6 @@ class NoticeListView extends StatelessWidget {
     }
   }
 
-=======
->>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     RxList<Notice> data;
@@ -86,17 +78,12 @@ class NoticeListView extends StatelessWidget {
                 final reversedIndex = data.length - 1 - index;
                 DateTime? deadline;
 
-<<<<<<< Updated upstream
                 if (category == 'applyRecruit' && data[reversedIndex].deadline.isNotEmpty && data[reversedIndex].deadline != '없음') {
                   try {
                     deadline = parseDeadline(data[reversedIndex].deadline);
                   } catch (e) {
                     print('Date parsing error: $e');
                   }
-=======
-                if (category == 'applyRecruit' && data[reversedIndex].deadline != '없음') {
-                  deadline = DateFormat('yyyyMMdd').parse(data[reversedIndex].deadline);
->>>>>>> Stashed changes
                 }
                 return GestureDetector(
                   onTap: () {
@@ -120,11 +107,7 @@ class NoticeListView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-<<<<<<< Updated upstream
                             if (category == 'applyRecruit' && data[reversedIndex].deadline != '없음')
-=======
-                            if (category == 'applyRecruit')
->>>>>>> Stashed changes
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -136,7 +119,6 @@ class NoticeListView extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-<<<<<<< Updated upstream
                                   Text(
                                     calculateDday(deadline),
                                     style: TextStyle(
@@ -145,17 +127,6 @@ class NoticeListView extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-=======
-                                  if (deadline != null)
-                                    Text(
-                                      calculateDday(deadline),
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
->>>>>>> Stashed changes
                                 ],
                               )
                             else
