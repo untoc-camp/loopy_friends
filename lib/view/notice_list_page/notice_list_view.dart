@@ -4,6 +4,7 @@ import 'package:loopy_friends/controller/notice_list_controller.dart';
 import 'package:loopy_friends/model/notice_list_model.dart';
 import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart';
 import 'package:loopy_friends/view/notice_detail_page/notice_recruit_view_page.dart';
+import 'package:intl/intl.dart';
 
 class NoticeListView extends StatelessWidget {
   final NoticeController noticeController = Get.put(NoticeController());
@@ -13,6 +14,35 @@ class NoticeListView extends StatelessWidget {
 
   Future<void> _refreshData() async {
     noticeController.refreshData(category);
+  }
+
+  String calculateDday(DateTime? deadline) {
+    if (deadline == null) {
+      return '무기한';
+    }
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final targetDate = DateTime(deadline.year, deadline.month, deadline.day);
+    final difference = targetDate.difference(today).inDays;
+    if (difference < 0) {
+      return '마감';
+    } else if (difference == 0) {
+      return 'D-day';
+    } else {
+      return 'D-$difference';
+    }
+  }
+
+  DateTime? parseDeadline(String deadline) {
+    try {
+      int year = int.parse(deadline.substring(0, 4));
+      int month = int.parse(deadline.substring(4, 6));
+      int day = int.parse(deadline.substring(6, 8));
+      return DateTime(year, month, day);
+    } catch (e) {
+      print('Date parsing error: $e');
+      return null;
+    }
   }
 
   @override
@@ -46,6 +76,15 @@ class NoticeListView extends StatelessWidget {
               itemCount: data.length,
               itemBuilder: (context, index) {
                 final reversedIndex = data.length - 1 - index;
+                DateTime? deadline;
+
+                if (category == 'applyRecruit' && data[reversedIndex].deadline.isNotEmpty && data[reversedIndex].deadline != '없음') {
+                  try {
+                    deadline = parseDeadline(data[reversedIndex].deadline);
+                  } catch (e) {
+                    print('Date parsing error: $e');
+                  }
+                }
                 return GestureDetector(
                   onTap: () {
                     if (category == 'applyRecruit') {
@@ -68,14 +107,37 @@ class NoticeListView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              data[reversedIndex].title,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                            if (category == 'applyRecruit' && data[reversedIndex].deadline != '없음')
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    data[reversedIndex].title,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    calculateDday(deadline),
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            else
+                              Text(
+                                data[reversedIndex].title,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
                             SizedBox(height: 10),
                             Text(
                               data[reversedIndex].created_at,
