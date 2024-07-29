@@ -13,7 +13,7 @@ class Post {
     return Post(
       title: json['title'],
       content: json['content'],
-      timestamp: DateTime.parse(json['timestamp']),
+      timestamp: json['timestamp'] != null ? DateTime.parse(json['timestamp'] as String) : DateTime.now(),
     );
   }
 

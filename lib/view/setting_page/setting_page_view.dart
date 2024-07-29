@@ -26,9 +26,7 @@ class SettingPageView extends StatelessWidget {
                     },
                   ),
                   SizedBox(width: 8),
-                  Text('내 프로필',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text('내 프로필', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -71,6 +69,13 @@ class SettingPageView extends StatelessWidget {
               title: '비밀번호 변경',
               onPressed: () {
                 Get.toNamed('/pwdChange');
+              },
+            ),
+            ButtonTile(
+              icon: Icons.article,
+              title: '작성한 글 보기',
+              onPressed: () {
+                Get.toNamed('/mywrite');
               },
             ),
             Divider(),
@@ -195,8 +200,7 @@ class ProfileCard extends StatelessWidget {
             child: Icon(Icons.person, color: Colors.white, size: 40),
           ),
           SizedBox(height: 8.0),
-          Text(name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           SizedBox(height: 4.0),
           Text(details, style: TextStyle(fontSize: 16)),
         ],
@@ -240,12 +244,8 @@ class ButtonTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    style: TextStyle(fontSize: 16.0, color: Colors.black)),
-                if (subtitle != null)
-                  Text(subtitle!,
-                      style:
-                          TextStyle(fontSize: 12.0, color: Colors.grey[700])),
+                Text(title, style: TextStyle(fontSize: 16.0, color: Colors.black)),
+                if (subtitle != null) Text(subtitle!, style: TextStyle(fontSize: 12.0, color: Colors.grey[700])),
               ],
             ),
           ],
