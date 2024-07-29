@@ -39,6 +39,7 @@ class MainPageView extends StatelessWidget {
       return 'D-$difference';
     }
   }
+
   DateTime? parseDeadline(String deadline) {
     try {
       int year = int.parse(deadline.substring(0, 4));
@@ -84,10 +85,7 @@ class MainPageView extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "공지",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -96,6 +94,15 @@ class MainPageView extends StatelessWidget {
                 height: 100,
                 width: MediaQuery.of(context).size.width - 16,
                 child: Obx(() {
+                  if (data.isEmpty) {
+                    return Center(
+                      child: Text(
+                        "공지사항이 없습니다.",
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                      ),
+                    );
+                  }
+
                   return SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Wrap(
@@ -114,8 +121,7 @@ class MainPageView extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             if (data.isNotEmpty && reversedIndex >= 0) {
-                              Get.to(() => DetailPageView(),
-                                  arguments: data[reversedIndex]);
+                              Get.to(() => DetailPageView(), arguments: data[reversedIndex]);
                             }
                           },
                           child: Container(
@@ -124,12 +130,10 @@ class MainPageView extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Color.fromARGB(255, 241, 241, 241),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 215, 215, 215)),
+                              border: Border.all(color: Color.fromARGB(255, 215, 215, 215)),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 18, vertical: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -140,13 +144,11 @@ class MainPageView extends StatelessWidget {
                                         Expanded(
                                           child: Text(
                                             data.isNotEmpty && reversedIndex >= 0
-                                                ? (data[reversedIndex].title.length > 16
-                                                    ? "${data[reversedIndex].title.substring(0, 16)}..."
-                                                    : data[reversedIndex].title)
+                                                ? (data[reversedIndex].title.length > 16 ? "${data[reversedIndex].title.substring(0, 16)}..." : data[reversedIndex].title)
                                                 : "Invalid Error",
                                             style: const TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.bold,
                                             ),
                                             maxLines: 2,
@@ -169,9 +171,7 @@ class MainPageView extends StatelessWidget {
                                         Expanded(
                                           child: Text(
                                             data.isNotEmpty && reversedIndex >= 0
-                                                ? (data[reversedIndex].title.length > 16
-                                                    ? "${data[reversedIndex].title.substring(0, 16)}..."
-                                                    : data[reversedIndex].title)
+                                                ? (data[reversedIndex].title.length > 16 ? "${data[reversedIndex].title.substring(0, 16)}..." : data[reversedIndex].title)
                                                 : "Invalid Error",
                                             style: const TextStyle(
                                               color: Colors.black,
@@ -237,8 +237,7 @@ class MainPageView extends StatelessWidget {
                 children: [
                   Text(
                     "커뮤니티",
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: TextColor, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -246,8 +245,7 @@ class MainPageView extends StatelessWidget {
                     },
                     child: Text(
                       "바로 가기",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: TextColor, fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
                     ),
                   )
                 ],
@@ -265,10 +263,7 @@ class MainPageView extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "커뮤니티 콘텐츠",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -280,8 +275,7 @@ class MainPageView extends StatelessWidget {
   }
 }
 
-Widget _buildIconColumn(
-    BuildContext context, String image, String title, String url) {
+Widget _buildIconColumn(BuildContext context, String image, String title, String url) {
   return MouseRegion(
     cursor: SystemMouseCursors.click,
     child: GestureDetector(
@@ -300,10 +294,7 @@ Widget _buildIconColumn(
           Text(
             title,
             textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge
-                ?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
           ),
         ],
       ),
