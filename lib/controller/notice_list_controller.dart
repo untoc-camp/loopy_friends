@@ -14,9 +14,6 @@ class NoticeController extends GetxController {
   void onInit() {
     super.onInit();
     refreshData('totalCouncil');
-    refreshData('departmentCouncil');
-    refreshData('departmentNotice');
-    refreshData('applyRecruit');
   }
 
   Future<void> fetchNoticeData(String category) async {
