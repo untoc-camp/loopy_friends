@@ -23,7 +23,7 @@ class PostController extends GetxController {
       return;
     }
 
-    final url = '${Urls.apiUrl}posts';
+    final url = '${Urls.apiUrl}posts/all';
     final headers = {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $accessToken',
@@ -83,6 +83,50 @@ class PostController extends GetxController {
       } else {
         print('Failed to add post: ${response.statusCode}');
         Get.snackbar('오류', '게시글 추가에 실패했습니다.', snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      print('Error occurred: $e');
+      Get.snackbar('오류', '네트워크 오류가 발생했습니다.', snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+}
+
+class MyPostController extends GetxController {
+  var posts = <Post>[].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    loadmyPosts();
+  }
+
+  Future<void> loadmyPosts() async {
+    final prefs = await SharedPreferences.getInstance();
+    final accessToken = prefs.getString('access_token');
+
+    if (accessToken == null) {
+      Get.offAllNamed('/login');
+      return;
+    }
+
+    final url = '${Urls.apiUrl}posts/mywrite';
+    final headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $accessToken',
+    };
+
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: headers,
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(utf8.decode(response.bodyBytes)) as List;
+        posts.value = responseData.map((post) => Post.fromJson(post)).toList();
+      } else {
+        print('Failed to fetch posts: ${response.statusCode}');
+        Get.snackbar('오류', '게시글 목록을 불러오는 데 실패했습니다.', snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
       print('Error occurred: $e');

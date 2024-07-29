@@ -7,7 +7,7 @@ class MyWritePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PostController postController = Get.put(PostController());
+    final MyPostController postController = Get.put(MyPostController());
 
     return Scaffold(
       appBar: AppBar(
