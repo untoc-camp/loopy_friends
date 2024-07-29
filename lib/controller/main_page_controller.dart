@@ -16,15 +16,18 @@ class MainPageController extends GetxController {
 }
 
 
+
 class NoticeTop5 {
   final String title;
+  final String deadline;
   // 다른 필드도 추가할 수 있습니다.
 
-  NoticeTop5({required this.title});
+  NoticeTop5({required this.title,required this.deadline});
 
   factory NoticeTop5.fromJson(Map<String, dynamic> json) {
     return NoticeTop5(
       title: json['title'],
+      deadline: json['deadline']
       // 다른 필드도 초기화
     );
   }

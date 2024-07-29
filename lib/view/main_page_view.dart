@@ -23,6 +23,34 @@ class MainPageView extends StatelessWidget {
   final NoticeTop5Controller noticeController = Get.put(NoticeTop5Controller());
   final _bottomNavController = Get.put(MyBottomNavgationBarController());
 
+  String calculateDday(DateTime? deadline) {
+    if (deadline == null) {
+      return '무기한';
+    }
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final targetDate = DateTime(deadline.year, deadline.month, deadline.day);
+    final difference = targetDate.difference(today).inDays;
+    if (difference < 0) {
+      return '마감';
+    } else if (difference == 0) {
+      return 'D-day';
+    } else {
+      return 'D-$difference';
+    }
+  }
+  DateTime? parseDeadline(String deadline) {
+    try {
+      int year = int.parse(deadline.substring(0, 4));
+      int month = int.parse(deadline.substring(4, 6));
+      int day = int.parse(deadline.substring(6, 8));
+      return DateTime(year, month, day);
+    } catch (e) {
+      print('Date parsing error: $e');
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final data = noticeController.noticeTop5List;
@@ -74,6 +102,15 @@ class MainPageView extends StatelessWidget {
                       spacing: 8,
                       children: List.generate(5, (index) {
                         final reversedIndex = data.length - 1 - index;
+                        DateTime? deadline;
+
+                        if (data[reversedIndex].deadline.isNotEmpty && data[reversedIndex].deadline != '없음') {
+                          try {
+                            deadline = parseDeadline(data[reversedIndex].deadline);
+                          } catch (e) {
+                            print('Date parsing error: $e');
+                          }
+                        }
                         return GestureDetector(
                           onTap: () {
                             if (data.isNotEmpty && reversedIndex >= 0) {
@@ -97,37 +134,56 @@ class MainPageView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          data.isNotEmpty && reversedIndex >= 0
-                                              ? (data[reversedIndex]
-                                                          .title
-                                                          .length >
-                                                      16
-                                                  ? "${data[reversedIndex].title.substring(0, 16)}..."
-                                                  : data[reversedIndex].title)
-                                              : "Invalid Error",
+                                  if (data[reversedIndex].deadline != '없음')
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            data.isNotEmpty && reversedIndex >= 0
+                                                ? (data[reversedIndex].title.length > 16
+                                                    ? "${data[reversedIndex].title.substring(0, 16)}..."
+                                                    : data[reversedIndex].title)
+                                                : "Invalid Error",
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                        Text(
+                                          calculateDday(deadline), // 기한 텍스트
                                           style: const TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.red,
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
                                           ),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
                                         ),
-                                      ),
-                                      Text(
-                                        "D-2", // 기한 텍스트
-                                        style: const TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
+                                      ],
+                                    )
+                                  else
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            data.isNotEmpty && reversedIndex >= 0
+                                                ? (data[reversedIndex].title.length > 16
+                                                    ? "${data[reversedIndex].title.substring(0, 16)}..."
+                                                    : data[reversedIndex].title)
+                                                : "Invalid Error",
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ),

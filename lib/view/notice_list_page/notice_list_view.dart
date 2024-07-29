@@ -78,7 +78,7 @@ class NoticeListView extends StatelessWidget {
                 final reversedIndex = data.length - 1 - index;
                 DateTime? deadline;
 
-                if (category == 'applyRecruit' && data[reversedIndex].deadline.isNotEmpty && data[reversedIndex].deadline != '없음') {
+                if (data[reversedIndex].deadline.isNotEmpty && data[reversedIndex].deadline != '없음') {
                   try {
                     deadline = parseDeadline(data[reversedIndex].deadline);
                   } catch (e) {
@@ -107,7 +107,7 @@ class NoticeListView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (category == 'applyRecruit' && data[reversedIndex].deadline != '없음')
+                            if (data[reversedIndex].deadline != '없음')
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
