@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/components/bottom_navigation/bottom_navigation_bar_controller.dart';
@@ -6,6 +7,7 @@ import 'package:loopy_friends/controller/main_page_controller.dart';
 import 'package:loopy_friends/controller/notice_list_controller.dart'; // NoticeController import 추가
 import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart'; // DetailPageView import 추가
 import 'package:url_launcher/url_launcher.dart';
+import 'package:loopy_friends/controller/write_page_controller.dart';
 
 Future<void> launchURL(String url) async {
   final Uri uri = Uri.parse(url);
@@ -22,7 +24,8 @@ class MainPageView extends StatelessWidget {
   final _controller = Get.put(MainPageController());
   final NoticeTop5Controller noticeController = Get.put(NoticeTop5Controller());
   final _bottomNavController = Get.put(MyBottomNavgationBarController());
-
+  final PostController postController = Get.put(PostController());
+  
   String calculateDday(DateTime? deadline) {
     if (deadline == null) {
       return '무기한';
@@ -260,11 +263,37 @@ class MainPageView extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Center(
-                  child: Text(
-                    "커뮤니티 콘텐츠",
-                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Obx(() {
+                    var reversedPosts = postController.posts.reversed.toList();
+                    return ListView.builder(
+                      itemCount: reversedPosts.length,
+                      itemBuilder: (context, index) {
+                        final post = reversedPosts[index];
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                _bottomNavController.changeIndex(2);
+                              },
+                              child: Text(
+                                post.title,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            Divider(
+                              thickness: 0.5,
+                              color: Colors.blueGrey,
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }),
                 ),
               ),
             ),
