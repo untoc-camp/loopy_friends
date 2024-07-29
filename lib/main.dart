@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'PlacePlanPlatform',
+      title: 'LoopyFriends',
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Nanum Gothic',
