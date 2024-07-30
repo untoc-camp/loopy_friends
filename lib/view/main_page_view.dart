@@ -113,21 +113,21 @@ class MainPageView extends StatelessWidget {
                     child: Wrap(
                       spacing: 8,
                       children: List.generate(5, (index) {
-                        final reversedIndex = data.length - 1 - index;
+                        // final reversedIndex = data.length - 1 - index;
                         DateTime? deadline;
 
-                        if (data[reversedIndex].deadline.isNotEmpty && data[reversedIndex].deadline != '없음') {
+                        if (data[index].deadline.isNotEmpty && data[index].deadline != '없음') {
                           try {
-                            deadline = parseDeadline(data[reversedIndex].deadline);
+                            deadline = parseDeadline(data[index].deadline);
                           } catch (e) {
                             print('Date parsing error: $e');
                           }
                         }
                         return GestureDetector(
                           onTap: () {
-                            if (data.isNotEmpty && reversedIndex >= 0) {
-                              final notice = Notice.fromNoticeTop5(data[reversedIndex]);
-                              if (data[reversedIndex].deadline != '없음') {
+                            if (data.isNotEmpty && index >= 0) {
+                              final notice = Notice.fromNoticeTop5(data[index]);
+                              if (data[index].deadline != '없음') {
                                 Get.to(() => RecruitPageView(), arguments: notice);
                               } else {
                                 Get.to(() => DetailPageView(), arguments: notice);
@@ -148,14 +148,12 @@ class MainPageView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  if (data[reversedIndex].deadline != '없음')
+                                  if (data[index].deadline != '없음')
                                     Row(
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            data.isNotEmpty && reversedIndex >= 0
-                                                ? (data[reversedIndex].title.length > 16 ? "${data[reversedIndex].title.substring(0, 16)}..." : data[reversedIndex].title)
-                                                : "Invalid Error",
+                                            data.isNotEmpty && index >= 0 ? (data[index].title.length > 16 ? "${data[index].title.substring(0, 16)}..." : data[index].title) : "Invalid Error",
                                             style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 18,
@@ -180,9 +178,7 @@ class MainPageView extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            data.isNotEmpty && reversedIndex >= 0
-                                                ? (data[reversedIndex].title.length > 16 ? "${data[reversedIndex].title.substring(0, 16)}..." : data[reversedIndex].title)
-                                                : "Invalid Error",
+                                            data.isNotEmpty && index >= 0 ? (data[index].title.length > 16 ? "${data[index].title.substring(0, 16)}..." : data[index].title) : "Invalid Error",
                                             style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 20,
