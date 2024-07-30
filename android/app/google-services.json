@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "725003381081",
+    "project_id": "selon-2ac18",
+    "storage_bucket": "selon-2ac18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725003381081:android:5a42651617d72144f54448",
+        "android_client_info": {
+          "package_name": "com.test.loopy_friends"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxirzd3OwKB0JZATTqyfiB2P8trJ8q6nI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725003381081:android:2efefb1cde135efbf54448",
+        "android_client_info": {
+          "package_name": "com.test1.loopy_friends"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxirzd3OwKB0JZATTqyfiB2P8trJ8q6nI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

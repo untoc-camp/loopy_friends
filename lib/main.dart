@@ -1,17 +1,55 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/constants/colors.dart';
+import 'package:loopy_friends/home_screen.dart';
 import 'package:loopy_friends/router/main_rotuer.dart';
 import 'package:loopy_friends/themes/button_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:loopy_friends/service/notification_services.dart';
+import 'firebase_options.dart';
 
 void main() async {
   await dotenv.load(fileName: 'assets/config/.env');
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final NotificationServices notificationServices = Get.put(NotificationServices());
+
+  @override
+  void initState() {
+    super.initState();
+    initializeNotificationServices();
+  }
+
+  Future<void> initializeNotificationServices() async {
+    await notificationServices.requestNotificationPermission();
+    notificationServices.firebaseInit();
+    notificationServices.getDeviceToken().then((value) {
+      print('device token');
+      print(value);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
