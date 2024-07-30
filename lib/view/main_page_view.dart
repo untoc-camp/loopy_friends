@@ -8,6 +8,8 @@ import 'package:loopy_friends/controller/notice_list_controller.dart'; // Notice
 import 'package:loopy_friends/view/notice_detail_page/notice_detail_page_view.dart'; // DetailPageView import 추가
 import 'package:url_launcher/url_launcher.dart';
 import 'package:loopy_friends/controller/write_page_controller.dart';
+import 'package:loopy_friends/model/notice_list_model.dart';
+import 'package:loopy_friends/view/notice_detail_page/notice_recruit_view_page.dart';
 
 Future<void> launchURL(String url) async {
   final Uri uri = Uri.parse(url);
@@ -25,7 +27,7 @@ class MainPageView extends StatelessWidget {
   final NoticeTop5Controller noticeController = Get.put(NoticeTop5Controller());
   final _bottomNavController = Get.put(MyBottomNavgationBarController());
   final PostController postController = Get.put(PostController());
-  
+
   String calculateDday(DateTime? deadline) {
     if (deadline == null) {
       return '무기한';
@@ -124,7 +126,12 @@ class MainPageView extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             if (data.isNotEmpty && reversedIndex >= 0) {
-                              Get.to(() => DetailPageView(), arguments: data[reversedIndex]);
+                              final notice = Notice.fromNoticeTop5(data[reversedIndex]);
+                              if (data[reversedIndex].deadline != '없음') {
+                                Get.to(() => RecruitPageView(), arguments: notice);
+                              } else {
+                                Get.to(() => DetailPageView(), arguments: notice);
+                              }
                             }
                           },
                           child: Container(

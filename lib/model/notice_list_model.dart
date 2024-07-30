@@ -1,3 +1,5 @@
+import 'package:loopy_friends/controller/main_page_controller.dart';
+
 class Notice {
   final int id;
   final String title;
@@ -22,5 +24,14 @@ class Notice {
       'id': id,
       'deadline': deadline,
     };
+  }
+
+  factory Notice.fromNoticeTop5(NoticeTop5 noticeTop5) {
+    return Notice(
+      title: noticeTop5.title,
+      created_at: noticeTop5.created_at,
+      id: noticeTop5.id,
+      deadline: noticeTop5.deadline,
+    );
   }
 }

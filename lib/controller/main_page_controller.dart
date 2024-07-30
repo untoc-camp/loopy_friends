@@ -2,34 +2,25 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../constants/url.dart';
+
 class MainPageController extends GetxController {
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-
   void navigteMain() {
     Get.toNamed('/login');
   }
-
 }
 
-
-
 class NoticeTop5 {
+  final int id;
   final String title;
+  final String created_at;
   final String deadline;
-  // 다른 필드도 추가할 수 있습니다.
 
-  NoticeTop5({required this.title,required this.deadline});
+  NoticeTop5({required this.title, required this.created_at, required this.id, required this.deadline});
 
   factory NoticeTop5.fromJson(Map<String, dynamic> json) {
-    return NoticeTop5(
-      title: json['title'],
-      deadline: json['deadline']
-      // 다른 필드도 초기화
-    );
+    return NoticeTop5(title: json['title'], created_at: json['created_at'], id: json['id'], deadline: json['deadline']
+        // 다른 필드도 초기화
+        );
   }
 }
 
