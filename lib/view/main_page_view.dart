@@ -88,9 +88,19 @@ class MainPageView extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "공지",
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+              child: Row(
+                children: [
+                  Text(
+                    "공지",
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(width: 5),
+                  IconButton(
+                      onPressed: () {
+                        noticeController.fetchNoticeTop5();
+                      },
+                      icon: Icon(Icons.refresh, size: 20))
+                ],
               ),
             ),
             Padding(
