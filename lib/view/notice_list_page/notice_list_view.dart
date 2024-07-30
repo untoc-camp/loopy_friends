@@ -87,7 +87,7 @@ class NoticeListView extends StatelessWidget {
                 }
                 return GestureDetector(
                   onTap: () {
-                    if (category == 'applyRecruit') {
+                    if (data[reversedIndex].deadline != '없음') {
                       Get.to(() => RecruitPageView(), arguments: data[reversedIndex]);
                     } else {
                       Get.to(() => DetailPageView(), arguments: data[reversedIndex]);

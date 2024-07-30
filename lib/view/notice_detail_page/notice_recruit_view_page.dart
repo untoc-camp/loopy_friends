@@ -140,6 +140,8 @@ class URLButton extends StatelessWidget {
               ),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   '신청하기',
