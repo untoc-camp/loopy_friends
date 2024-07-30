@@ -150,6 +150,8 @@ class MainPageView extends StatelessWidget {
                                 children: [
                                   if (data[index].deadline != '없음')
                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Expanded(
                                           child: Text(
