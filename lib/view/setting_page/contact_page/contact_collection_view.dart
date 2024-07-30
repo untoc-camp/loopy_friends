@@ -51,30 +51,36 @@ class _ContactCollectionViewState extends State<ContactCollectionView> {
               itemCount: contactHistory.length,
               itemBuilder: (context, index) {
                 final item = contactHistory[index];
-                return ListTile(
-                  title: Text(item['inquiry'] ?? '문의 내용 없음',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  subtitle: Text(
-                    item['response'] ?? '답변을 기다리는 중입니다',
-                    style: TextStyle(
-                      color: item['response'] == null ? Colors.red : Colors.black,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => InquiryDetailPage(
-                          inquiry: item['inquiry'],
-                          response: item['response'],
-                        ),
+                return Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        item['inquiry'] ?? '문의 내용 없음',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    );
-                  },
+                      subtitle: Text(
+                        item['response'] ?? '답변을 기다리는 중입니다',
+                        style: TextStyle(
+                          color: item['response'] == null ? Colors.red : Colors.black,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => InquiryDetailPage(
+                              inquiry: item['inquiry'],
+                              response: item['response'],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    Divider(),
+                  ],
                 );
               },
             ),
