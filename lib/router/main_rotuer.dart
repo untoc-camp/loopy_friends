@@ -15,7 +15,8 @@ import 'package:loopy_friends/view/setting_page/usage_restriction_view.dart';
 import 'package:loopy_friends/view/start_page/signup_page_view.dart';
 import 'package:loopy_friends/view/setting_page/change_pwd_view.dart';
 import 'package:loopy_friends/view/setting_page/change_nickname_view.dart';
-import 'package:loopy_friends/view/setting_page/contact_inquiry_view.dart';
+import 'package:loopy_friends/view/setting_page/contact_page/contact_inquiry_view.dart';
+import 'package:loopy_friends/view/setting_page/contact_page/contact_collection_view.dart';
 
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/write_page/write_page_view.dart';
@@ -81,6 +82,12 @@ class MainRouter {
       name: '/privacy_policy',
       page: () => MainLayout(
         child: const PrivacyPolicyPage(),
+      ),
+    ),
+    GetPage(
+      name: '/contact_collection',
+      page: () => MainLayout(
+        child: ContactCollectionView(),
       ),
     ),
     GetPage(

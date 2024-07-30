@@ -119,7 +119,7 @@ class SettingPageView extends StatelessWidget {
               icon: Icons.help,
               title: '문의하기',
               onPressed: () {
-                Get.toNamed('/contact_inquiry');
+                Get.toNamed('/contact_collection');
               },
             ),
             ButtonTile(
