@@ -17,6 +17,7 @@ import 'package:loopy_friends/view/setting_page/change_pwd_view.dart';
 import 'package:loopy_friends/view/setting_page/change_nickname_view.dart';
 import 'package:loopy_friends/view/setting_page/contact_page/contact_inquiry_view.dart';
 import 'package:loopy_friends/view/setting_page/contact_page/contact_collection_view.dart';
+import 'package:loopy_friends/view/setting_page/alert_check_view.dart';
 
 import 'package:loopy_friends/view/start_page/start_page_view.dart';
 import 'package:loopy_friends/view/write_page/write_page_view.dart';
@@ -70,6 +71,12 @@ class MainRouter {
       name: '/usage_restriction',
       page: () => MainLayout(
         child: const UsageRestrictionPage(),
+      ),
+    ),
+    GetPage(
+      name: '/notification_settings',
+      page: () => MainLayout(
+        child: AlertCheckView(),
       ),
     ),
     GetPage(
