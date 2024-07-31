@@ -64,9 +64,10 @@ class MainPageView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 246, 246),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               children: [
@@ -87,8 +88,10 @@ class MainPageView extends StatelessWidget {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "공지",
@@ -123,7 +126,6 @@ class MainPageView extends StatelessWidget {
                     child: Wrap(
                       spacing: 8,
                       children: List.generate(5, (index) {
-                        // final reversedIndex = data.length - 1 - index;
                         DateTime? deadline;
 
                         if (data[index].deadline.isNotEmpty && data[index].deadline != '없음') {
@@ -156,7 +158,7 @@ class MainPageView extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   if (data[index].deadline != '없음')
                                     Row(
@@ -193,7 +195,7 @@ class MainPageView extends StatelessWidget {
                                             data.isNotEmpty && index >= 0 ? (data[index].title.length > 16 ? "${data[index].title.substring(0, 16)}..." : data[index].title) : "Invalid Error",
                                             style: const TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.bold,
                                             ),
                                             maxLines: 2,
@@ -202,6 +204,14 @@ class MainPageView extends StatelessWidget {
                                         ),
                                       ],
                                     ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    data[index].created_at,
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 10,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -282,32 +292,43 @@ class MainPageView extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Obx(() {
                     var reversedPosts = postController.posts.reversed.toList();
-                    return ListView.builder(
-                      itemCount: reversedPosts.length,
-                      itemBuilder: (context, index) {
-                        final post = reversedPosts[index];
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                _bottomNavController.changeIndex(2);
-                              },
-                              child: Text(
-                                post.title,
-                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                      fontWeight: FontWeight.bold,
+                    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: reversedPosts.length < 5 ? reversedPosts.length : 5,
+                          itemBuilder: (context, index) {
+                            final post = reversedPosts[index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "🍀",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black.withOpacity(0.7),
                                     ),
+                                  ),
+                                  const SizedBox(width: 7),
+                                  Expanded(
+                                    child: Text(
+                                      post.title,
+                                      style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: 17,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Divider(
-                              thickness: 0.5,
-                              color: Colors.blueGrey,
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                            );
+                          },
+                        ),
+                      )
+                    ]);
                   }),
                 ),
               ),
