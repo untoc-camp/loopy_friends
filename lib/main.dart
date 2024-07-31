@@ -8,10 +8,12 @@ import 'package:loopy_friends/themes/button_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:loopy_friends/service/notification_services.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // SharedPreferences 추가
 import 'firebase_options.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'constants/url.dart';
+
 void main() async {
   await dotenv.load(fileName: 'assets/config/.env');
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,32 +52,40 @@ class _MyAppState extends State<MyApp> {
     notificationServices.getDeviceToken().then((value) async {
       print('device token');
       print(value);
-      await sendDeviceTokenToServer(value);
+      await sendDeviceTokenToServerIfNeeded(value);
     });
   }
 
-  Future<void> sendDeviceTokenToServer(String? token) async {
+  Future<void> sendDeviceTokenToServerIfNeeded(String? token) async {
     if (token == null) return;
 
-    final url = '${Urls.apiUrl}api/device-token'; // FastAPI 서버 URL을 여기에 입력하세요.
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        'device_token': token,
-        "check_totalcouncil": true,
-        "check_departcouncil": true,
-        "check_depart": true,
-        "check_apply": true
-      }),
-    );
+    final prefs = await SharedPreferences.getInstance();
+    final storedToken = prefs.getString('device_token');
 
-    if (response.statusCode == 200) {
-      print('Device token successfully sent to the server.');
+    if (storedToken != token) {
+      final url = '${Urls.apiUrl}api/device-token'; // FastAPI 서버 URL을 여기에 입력하세요.
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'device_token': token,
+          "check_totalcouncil": true,
+          "check_departcouncil": true,
+          "check_depart": true,
+          "check_apply": true
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        print('Device token successfully sent to the server.');
+        await prefs.setString('device_token', token);
+      } else {
+        print('Failed to send device token to the server. Status code: ${response.statusCode}');
+      }
     } else {
-      print('Failed to send device token to the server. Status code: ${response.statusCode}');
+      print('Device token is unchanged, no need to send to the server.');
     }
   }
 
