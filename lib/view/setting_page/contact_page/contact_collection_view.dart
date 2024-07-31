@@ -23,7 +23,7 @@ class _ContactCollectionViewState extends State<ContactCollectionView> {
     // 아래는 예시 데이터
     List<Map<String, String?>> data = [
       {'inquiry': '대충긴제목을잘간략하게줄여서보여줄수있는지테스트하는내용입니다대충긴제목을잘간략하게줄여서보여줄수있는지테스트하는내용입니다', 'response': '답변 내용 1'},
-      {'inquiry': '문의 내용 2', 'response': null},
+      {'inquiry': '문의 내용 2', 'response': 'not yet'},
       {'inquiry': '문의 내용 3', 'response': '대충긴답변을잘간략하게줄여서보여줄수있는지테스트하는내용입니다대충긴답변을잘간략하게줄여서보여줄수있는지테스트하는내용입니다'},
     ];
 
@@ -60,9 +60,9 @@ class _ContactCollectionViewState extends State<ContactCollectionView> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       subtitle: Text(
-                        item['response'] ?? '답변을 기다리는 중입니다',
+                        item['response'] == 'not yet' ? '답변을 기다리는 중입니다' : item['response'] ?? '답변을 기다리는 중입니다',
                         style: TextStyle(
-                          color: item['response'] == null ? Colors.red : Colors.black,
+                          color: item['response'] == 'not yet' ? Colors.red : Colors.black,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -123,7 +123,7 @@ class InquiryDetailPage extends StatelessWidget {
             SizedBox(height: 16.0),
             Text('답변 내용:', style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: 8.0),
-            Text(response ?? '답변을 기다리는 중입니다'),
+            Text(response == 'not yet' ? '답변을 기다리는 중입니다' : response ?? '답변을 기다리는 중입니다'),
           ],
         ),
       ),
