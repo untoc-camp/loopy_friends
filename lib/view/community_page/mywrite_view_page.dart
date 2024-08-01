@@ -87,7 +87,7 @@ class MyWritePageView extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                     ),
                     Text(
-                      '${post.timestamp.hour}:${post.timestamp.minute}',
+                      '${post.timestamp.hour.toString().padLeft(2, '0')}:${post.timestamp.minute.toString().padLeft(2, '0')}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                     ),
                     Text(
