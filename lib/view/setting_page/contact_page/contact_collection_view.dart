@@ -30,7 +30,8 @@ class _ContactCollectionViewState extends State<ContactCollectionView> {
     });
 
     if (response.statusCode == 200) {
-      var data = json.decode(response.body) as List;
+      String bodyUtf8 = utf8.decode(response.bodyBytes);
+      var data = json.decode(bodyUtf8) as List;
       List<Map<String, String?>> contactData = data.map((item) => {
         'inquiry': item['content'] as String?,
         'response': item['answer'] as String?
