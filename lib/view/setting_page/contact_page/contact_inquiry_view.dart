@@ -62,6 +62,7 @@ class _ContactInquiryViewState extends State<ContactInquiryView> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _controller.sendContactInquiry();  // 문의 내용을 전송하는 메서드 호출
+                            Get.back();
                           }
                         },
                         child: Text('문의 내용 전송'),
