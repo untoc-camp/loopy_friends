@@ -77,13 +77,9 @@ class PostController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        posts.add(Post(
-          title: title,
-          content: content,
-          timestamp: DateTime.now(),
-        ));
         Get.snackbar('성공', '게시글이 추가되었습니다.',
             snackPosition: SnackPosition.BOTTOM);
+            fetchPosts();
       } else {
         print('Failed to add post: ${response.statusCode}');
         Get.snackbar('오류', '게시글 추가에 실패했습니다.',

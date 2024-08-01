@@ -71,7 +71,7 @@ class MyWritePageView extends StatelessWidget {
                   ),
                   Row(children: [
                     Text(
-                      '좋아요 : ${post.likes}',
+                      '댓글',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                     ),
                     Text(
@@ -79,7 +79,7 @@ class MyWritePageView extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                     ),
                     Text(
-                      '댓글',
+                      '좋아요 : ${post.likes}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                     ),
                     Text(
