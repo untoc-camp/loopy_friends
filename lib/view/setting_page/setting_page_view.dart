@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/components/bottom_navigation/bottom_navigation_bar_controller.dart';
+import 'package:loopy_friends/controller/my_written_post_controller.dart';
 import 'package:loopy_friends/controller/setting_page_controller.dart';
 
 class SettingPageView extends StatelessWidget {
@@ -8,6 +9,8 @@ class SettingPageView extends StatelessWidget {
 
   final SettingPageController _controller = Get.put(SettingPageController());
   final _bottomNavController = Get.put(MyBottomNavgationBarController());
+  final MyWrittenPostController myWrittenPostController =
+      Get.put(MyWrittenPostController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,9 @@ class SettingPageView extends StatelessWidget {
                     },
                   ),
                   SizedBox(width: 8),
-                  Text('내 프로필', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text('내 프로필',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -75,6 +80,7 @@ class SettingPageView extends StatelessWidget {
               icon: Icons.article,
               title: '작성한 글 보기',
               onPressed: () {
+                myWrittenPostController.loadMyPosts();
                 Get.toNamed('/mywrite');
               },
             ),
@@ -200,7 +206,8 @@ class ProfileCard extends StatelessWidget {
             child: Icon(Icons.person, color: Colors.white, size: 40),
           ),
           SizedBox(height: 8.0),
-          Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(name,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           SizedBox(height: 4.0),
           Text(details, style: TextStyle(fontSize: 16)),
         ],
@@ -244,8 +251,12 @@ class ButtonTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: TextStyle(fontSize: 16.0, color: Colors.black)),
-                if (subtitle != null) Text(subtitle!, style: TextStyle(fontSize: 12.0, color: Colors.grey[700])),
+                Text(title,
+                    style: TextStyle(fontSize: 16.0, color: Colors.black)),
+                if (subtitle != null)
+                  Text(subtitle!,
+                      style:
+                          TextStyle(fontSize: 12.0, color: Colors.grey[700])),
               ],
             ),
           ],

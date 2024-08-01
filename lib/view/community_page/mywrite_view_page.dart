@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loopy_friends/components/bottom_navigation/bottom_navigation_bar_controller.dart';
 import 'package:loopy_friends/controller/my_written_post_controller.dart';
 
 class MyWritePageView extends StatelessWidget {
@@ -7,17 +8,29 @@ class MyWritePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MyWrittenPostController postController = Get.put(MyWrittenPostController());
+    final MyWrittenPostController postController =
+        Get.put(MyWrittenPostController());
+    final bottomNavController = Get.put(MyBottomNavgationBarController());
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(
-          '💫내가 작성한 글💫',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
+        title: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back_sharp),
+              onPressed: () {
+                bottomNavController.changeIndex(3);
+              },
+            ),
+            Text(
+              '💫내가 작성한 글💫',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1.0),

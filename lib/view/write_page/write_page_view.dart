@@ -39,7 +39,8 @@ class _WritePageViewState extends State<WritePageView> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 212, 221, 232),
                     shape: const StadiumBorder(),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
                   ),
                   onPressed: () {
                     postController.addPost(
@@ -60,35 +61,37 @@ class _WritePageViewState extends State<WritePageView> {
             ]),
         body: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              TextField(
-                controller: _titleController,
-                decoration: InputDecoration(
-                  hintText: '제목',
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(
-                    color: Color.fromARGB(255, 203, 208, 216),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      hintText: '제목',
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(
+                        color: Color.fromARGB(255, 203, 208, 216),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const Divider(
-                thickness: 1,
-                color: Color.fromARGB(255, 203, 208, 216),
-              ),
-              TextField(
-                controller: _contentController,
-                decoration: InputDecoration(
-                  hintText: '내용을 입력하세요.',
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(
+                  const Divider(
+                    thickness: 1,
                     color: Color.fromARGB(255, 203, 208, 216),
-                    fontSize: 12,
                   ),
-                ),
-                maxLines: 10,
-              ),
-            ])));
+                  TextField(
+                    controller: _contentController,
+                    decoration: InputDecoration(
+                      hintText: '내용을 입력하세요.',
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(
+                        color: Color.fromARGB(255, 203, 208, 216),
+                        fontSize: 12,
+                      ),
+                    ),
+                    maxLines: 10,
+                  ),
+                ])));
   }
 }
