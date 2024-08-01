@@ -3,12 +3,14 @@ class MyWrittenPost {
   String title;
   String content;
   DateTime timestamp;
+  int likes;
 
   MyWrittenPost({
     required this.id,
     required this.title,
     required this.content,
     required this.timestamp,
+    required this.likes,
   });
 
   factory MyWrittenPost.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class MyWrittenPost {
       timestamp: json['timestamp'] != null
           ? DateTime.parse(json['timestamp'] as String)
           : DateTime.now(),
+      likes: json['likes'],
     );
   }
 
