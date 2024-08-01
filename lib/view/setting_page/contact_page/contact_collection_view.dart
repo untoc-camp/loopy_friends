@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../../constants/url.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class ContactCollectionView extends StatefulWidget {
   const ContactCollectionView({super.key});
 
@@ -18,19 +21,34 @@ class _ContactCollectionViewState extends State<ContactCollectionView> {
   }
 
   void fetchContactHistory() async {
-    // 여기에 데이터를 받아오는 메서드를 호출
-    // e.g.) List<Map<String, String?>> data = await getContactHistory();
-    // 아래는 예시 데이터
-    List<Map<String, String?>> data = [
-      {'inquiry': '대충긴제목을잘간략하게줄여서보여줄수있는지테스트하는내용입니다대충긴제목을잘간략하게줄여서보여줄수있는지테스트하는내용입니다', 'response': '답변 내용 1'},
-      {'inquiry': '문의 내용 2', 'response': 'not yet'},
-      {'inquiry': '문의 내용 3', 'response': '대충긴답변을잘간략하게줄여서보여줄수있는지테스트하는내용입니다대충긴답변을잘간략하게줄여서보여줄수있는지테스트하는내용입니다'},
-    ];
+  final prefs = await SharedPreferences.getInstance();
+  final accessToken = prefs.getString('access_token');
+  var url = Uri.parse('${Urls.apiUrl}mycontact');
+  try {
+    var response = await http.get(url, headers: {
+      "Authorization": "Bearer $accessToken", // 필요하다면 토큰 추가
+    });
 
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body) as List;
+      List<Map<String, String?>> contactData = data.map((item) => {
+        'inquiry': item['content'] as String?,
+        'response': item['answer'] as String?
+      }).toList();
+
+      setState(() {
+        contactHistory = contactData;
+      });
+    } else {
+      throw Exception('Failed to load contact history');
+    }
+  } catch (e) {
+    print('Error: $e');
     setState(() {
-      contactHistory = data;
+      contactHistory = []; // 오류 시 데이터 초기화
     });
   }
+}
 
   @override
   Widget build(BuildContext context) {
