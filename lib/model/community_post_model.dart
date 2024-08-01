@@ -1,11 +1,11 @@
-class MyWrittenPost {
+class Post {
   int id;
   String title;
   String content;
   DateTime timestamp;
   int likes;
 
-  MyWrittenPost({
+  Post({
     required this.id,
     required this.title,
     required this.content,
@@ -13,8 +13,8 @@ class MyWrittenPost {
     required this.likes,
   });
 
-  factory MyWrittenPost.fromJson(Map<String, dynamic> json) {
-    return MyWrittenPost(
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
       id: json['id'],
       title: json['title'],
       content: json['content'],

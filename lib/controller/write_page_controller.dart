@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:loopy_friends/model/write_page_model.dart';
+import 'package:loopy_friends/model/community_post_model.dart';
 import '../../constants/url.dart';
 
 class PostController extends GetxController {

@@ -2,11 +2,11 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:loopy_friends/model/my_written_post_model.dart';
+import 'package:loopy_friends/model/community_post_model.dart';
 import '../../constants/url.dart';
 
 class MyWrittenPostController extends GetxController {
-  var posts = <MyWrittenPost>[].obs;
+  var posts = <Post>[].obs;
 
   @override
   void onInit() {
@@ -39,7 +39,7 @@ class MyWrittenPostController extends GetxController {
         final responseData =
             jsonDecode(utf8.decode(response.bodyBytes)) as List;
         posts.value =
-            responseData.map((post) => MyWrittenPost.fromJson(post)).toList();
+            responseData.map((post) => Post.fromJson(post)).toList();
       } else {
         print('Failed to fetch posts: ${response.statusCode}');
         Get.snackbar('오류', '게시글 목록을 불러오는 데 실패했습니다.',
