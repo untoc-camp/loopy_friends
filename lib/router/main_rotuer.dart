@@ -5,7 +5,7 @@ import 'package:loopy_friends/view/community_page/community_page_view.dart';
 import 'package:loopy_friends/view/main_page_view.dart';
 import 'package:loopy_friends/view/notice_page/notice_page_view.dart';
 import 'package:loopy_friends/view/start_page/loading_page_view.dart';
-import 'package:loopy_friends/view/community_page/mywrite__view_page.dart';
+import 'package:loopy_friends/view/community_page/mywrite_view_page.dart';
 
 // setting section
 import 'package:loopy_friends/view/setting_page/setting_page_view.dart';

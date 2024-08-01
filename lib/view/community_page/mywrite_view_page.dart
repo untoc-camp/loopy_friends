@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loopy_friends/controller/write_page_controller.dart';
+import 'package:loopy_friends/controller/my_written_post_controller.dart';
 
 class MyWritePageView extends StatelessWidget {
   const MyWritePageView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final MyPostController postController = Get.put(MyPostController());
+    final MyWrittenPostController postController = Get.put(MyWrittenPostController());
 
     return Scaffold(
       appBar: AppBar(
@@ -74,7 +74,11 @@ class MyWritePageView extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          // 해당 인덱스의 포스트를 삭제합니다.
+                          await postController.deletePost(
+                              post.id, reversedPosts.length - 1 - index);
+                        },
                         child: Text(
                           "삭제",
                           style: TextStyle(
