@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:loopy_friends/controller/start_page_controller.dart';
 
@@ -63,27 +61,38 @@ class StartPageView extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
-            Container(
-              width: 300,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: TextFormField(
-                    controller: _controller.pwTextController,
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                      hintText: '비밀번호',
-                      border: InputBorder.none,
+            Obx(() => Container(
+                  width: 300,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: TextFormField(
+                        controller: _controller.pwTextController,
+                        textAlignVertical: TextAlignVertical.center,
+                        obscureText: !_controller.isPasswordVisible.value,
+                        decoration: InputDecoration(
+                          hintText: '비밀번호',
+                          border: InputBorder.none,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _controller.isPasswordVisible.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              _controller.togglePasswordVisibility();
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
+                )),
             SizedBox(
               height: 5,
             ),

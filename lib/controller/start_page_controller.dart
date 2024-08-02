@@ -9,6 +9,8 @@ class StartPageController extends GetxController {
   final idTextController = TextEditingController();
   final pwTextController = TextEditingController();
 
+  var isPasswordVisible = false.obs;
+
   void loginButton() async {
     String apiUrl = '${Urls.apiUrl}users/login';
     try {
@@ -47,6 +49,10 @@ class StartPageController extends GetxController {
 
   void signupButton() {
     Get.toNamed('/signup');
+  }
+
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value;
   }
 }
 
