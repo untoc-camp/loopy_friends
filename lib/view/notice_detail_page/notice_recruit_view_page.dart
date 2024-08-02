@@ -126,8 +126,8 @@ class URLButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 70,
-        height: 70,
+        width: 85,
+        height: 85,
         child: ElevatedButton(
             onPressed: () {
               _launchURL(urllink);
