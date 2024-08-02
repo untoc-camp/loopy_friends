@@ -82,7 +82,7 @@ class MainPageView extends StatelessWidget {
                     ),
                     const Spacer(),
                     IconButton(
-                      icon: Icon(Icons.account_circle, size: 35),
+                      icon: Icon(Icons.account_circle, size: 40, color: Color(0xFFB1589D).withOpacity(0.8)),
                       onPressed: () {
                         _bottomNavController.changeIndex(3);
                       },
@@ -95,7 +95,7 @@ class MainPageView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
@@ -154,9 +154,9 @@ class MainPageView extends StatelessWidget {
                                 height: 100,
                                 width: 200,
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 241, 241, 241),
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: Color.fromARGB(255, 215, 215, 215)),
+                                  border: Border.all(color: Color(0xFFB1589D).withOpacity(0.2), width: 2.0),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -291,6 +291,7 @@ class MainPageView extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Color.fromARGB(255, 89, 159, 167).withOpacity(0.2), width: 2.0),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -355,7 +356,7 @@ Widget _buildIconColumn(BuildContext context, String image, String title, String
         children: [
           Image.asset(
             image,
-            height: 50,
+            height: 45,
           ),
           const SizedBox(
             height: 10,
@@ -363,7 +364,10 @@ Widget _buildIconColumn(BuildContext context, String image, String title, String
           Text(
             title,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: TextColor, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: Colors.grey[700],
+              fontSize: 12,
+            ),
           ),
         ],
       ),
