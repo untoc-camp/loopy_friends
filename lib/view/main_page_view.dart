@@ -164,58 +164,55 @@ class MainPageView extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              data.isNotEmpty && index >= 0 ? (data[index].title.length > 16 ? "${data[index].title.substring(0, 16)}..." : data[index].title) : "Invalid Error",
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
                                       if (data[index].deadline != '없음')
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                data.isNotEmpty && index >= 0 ? (data[index].title.length > 16 ? "${data[index].title.substring(0, 16)}..." : data[index].title) : "Invalid Error",
+                                                data[index].created_at,
                                                 style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey,
+                                                  fontSize: 10,
                                                 ),
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ),
                                             Text(
                                               calculateDday(deadline), // 기한 텍스트
                                               style: const TextStyle(
                                                 color: Colors.red,
-                                                fontSize: 20,
+                                                fontSize: 13,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ],
                                         )
                                       else
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                data.isNotEmpty && index >= 0 ? (data[index].title.length > 16 ? "${data[index].title.substring(0, 16)}..." : data[index].title) : "Invalid Error",
-                                                style: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
+                                        Text(
+                                          data[index].created_at,
+                                          style: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 10,
+                                          ),
                                         ),
-                                      const Spacer(),
-                                      Text(
-                                        data[index].created_at,
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 10,
-                                        ),
-                                      ),
                                     ],
                                   ),
                                 ),

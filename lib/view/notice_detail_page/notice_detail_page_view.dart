@@ -41,9 +41,9 @@ class DetailPageView extends StatelessWidget {
           final noticeInfo = snapshot.data!;
           return Scaffold(
             appBar: AppBar(
-              title: Text(noticeInfo.title),
+              title: Text(noticeInfo.title, style : TextStyle(color: Colors.black, fontSize: 20)),
             ),
-            backgroundColor: Color.fromARGB(255, 212, 221, 232),
+            backgroundColor: Color(0xFFB1589D).withOpacity(0.2),
             body: SingleChildScrollView(
               child: Center(
                 child: Padding(

@@ -8,29 +8,29 @@ class MyWritePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MyWrittenPostController postController =
-        Get.put(MyWrittenPostController());
+    final MyWrittenPostController postController = Get.put(MyWrittenPostController());
     final bottomNavController = Get.put(MyBottomNavgationBarController());
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back_sharp),
-              onPressed: () {
-                bottomNavController.changeIndex(3);
-              },
+        automaticallyImplyLeading: true,
+        title: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+            automaticallyImplyLeading: false,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  '💫 내가 작성한 글 💫',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              '💫내가 작성한 글💫',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-          ],
+          ),
         ),
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1.0),
@@ -97,8 +97,7 @@ class MyWritePageView extends StatelessWidget {
                     TextButton(
                         onPressed: () async {
                           // 해당 인덱스의 포스트를 삭제합니다.
-                          await postController.deletePost(
-                              post.id, reversedPosts.length - 1 - index);
+                          await postController.deletePost(post.id, reversedPosts.length - 1 - index);
                         },
                         child: Text(
                           "삭제",

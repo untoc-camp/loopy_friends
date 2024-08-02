@@ -9,57 +9,73 @@ class SettingPageView extends StatelessWidget {
 
   final SettingPageController _controller = Get.put(SettingPageController());
   final _bottomNavController = Get.put(MyBottomNavgationBarController());
-  final MyWrittenPostController myWrittenPostController =
-      Get.put(MyWrittenPostController());
+  final MyWrittenPostController myWrittenPostController = Get.put(MyWrittenPostController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.0),
+        child: AppBar(
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '━━━━⊱⋆ 내 정보 ⋆⊰━━━━',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back_sharp),
-                    onPressed: () {
-                      _bottomNavController.changeIndex(0);
-                    },
-                  ),
-                  SizedBox(width: 8),
-                  Text('내 프로필',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                ],
-              ),
-            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(width: 12),
-                    SizedBox(
-                      width: 200,
-                      child: Obx(() => ProfileCard(
-                            name: '이름',
-                            details: _controller.realname.value,
-                          )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '내 프로필',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(width: 12),
-                    SizedBox(
-                      width: 200,
-                      child: Obx(() => ProfileCard(
-                            name: '닉네임',
-                            details: _controller.nickname.value,
-                          )),
+                  ),
+                  IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: Obx(() => ProfileCard(
+                                name: _controller.realname.value,
+                                details: '이름',
+                                profileColor: Color(0xFFB1589D),
+                              )),
+                        ),
+                        SizedBox(width: 12),
+                        SizedBox(
+                          width: 200,
+                          child: Obx(() => ProfileCard(
+                                name: _controller.nickname.value,
+                                details: '닉네임',
+                                profileColor: Color(0xFF6ABFC8),
+                              )),
+                        ),
+                        SizedBox(width: 16),
+                      ],
                     ),
-                    SizedBox(width: 16),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             ButtonTile(
@@ -181,11 +197,13 @@ class SettingPageView extends StatelessWidget {
 class ProfileCard extends StatelessWidget {
   final String name;
   final String details;
+  final Color profileColor;
 
   const ProfileCard({
     super.key,
     required this.name,
     required this.details,
+    required this.profileColor,
   });
 
   @override
@@ -194,22 +212,20 @@ class ProfileCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 8.0),
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundColor: Colors.orange,
+            backgroundColor: profileColor,
             child: Icon(Icons.person, color: Colors.white, size: 40),
           ),
           SizedBox(height: 8.0),
-          Text(name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(height: 4.0),
-          Text(details, style: TextStyle(fontSize: 16)),
+          Text(name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(details, style: TextStyle(fontSize: 14)),
         ],
       ),
     );
@@ -251,12 +267,8 @@ class ButtonTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    style: TextStyle(fontSize: 16.0, color: Colors.black)),
-                if (subtitle != null)
-                  Text(subtitle!,
-                      style:
-                          TextStyle(fontSize: 12.0, color: Colors.grey[700])),
+                Text(title, style: TextStyle(fontSize: 16.0, color: Colors.black)),
+                if (subtitle != null) Text(subtitle!, style: TextStyle(fontSize: 12.0, color: Colors.grey[700])),
               ],
             ),
           ],

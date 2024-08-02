@@ -42,9 +42,9 @@ class RecruitPageView extends StatelessWidget {
           final noticeInfo = snapshot.data!;
           return Scaffold(
             appBar: AppBar(
-              title: Text(noticeInfo.title),
+              title: Text(noticeInfo.title, style: TextStyle(color: Colors.black, fontSize: 20)),
             ),
-            backgroundColor: Color.fromARGB(255, 212, 221, 232),
+            backgroundColor: Color(0xFFB1589D).withOpacity(0.2),
             body: SingleChildScrollView(
               child: Center(
                 child: Padding(
@@ -133,11 +133,16 @@ class URLButton extends StatelessWidget {
               _launchURL(urllink);
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 179, 197, 218),
+              backgroundColor: Color(0xFF6ABFC8).withOpacity(0.5),
               padding: EdgeInsets.symmetric(vertical: 20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+                side: BorderSide(
+                  color: Color(0xFF6ABFC8).withOpacity(0.7),
+                  width: 2.0,
+                ),
               ),
+              elevation: 0,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
