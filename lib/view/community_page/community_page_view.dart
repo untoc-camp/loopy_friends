@@ -17,12 +17,31 @@ class CommunityPageView extends StatelessWidget {
             title: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  '✨정컴이들의 게시판✨',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
+                Row(
+                  children: [
+                    const Text(
+                      '✨',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const Text(
+                      '정컴',
+                      style: TextStyle(
+                        color: Color(0xFFB1589D),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Text(
+                      '이들의 게시판✨',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -38,11 +57,14 @@ class CommunityPageView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final post = reversedPosts[index];
                 return Container(
+                  padding: const EdgeInsets.all(20.0),
                   margin: const EdgeInsets.only(bottom: 13),
-                  padding: const EdgeInsets.all(20),
+                  width: double.infinity,
+                  constraints: BoxConstraints(minHeight: 100),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(color: Color(0xFF6ABFC8).withOpacity(0.2), width: 2.0),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.1),
