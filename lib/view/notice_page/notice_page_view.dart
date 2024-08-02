@@ -52,26 +52,28 @@ class _NoticePageViewState extends State<NoticePageView> with SingleTickerProvid
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(45.0),
-        child: TabBar(
-          controller: _tabController,
-          labelColor: Color(0xFFB1589D),
-          unselectedLabelColor: Color.fromARGB(255, 114, 116, 118),
-          labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
-          indicator: BoxDecoration(),
-          indicatorColor: Colors.transparent,
-          indicatorWeight: 0.0,
-          dividerColor: Colors.transparent,
-          labelPadding: EdgeInsets.symmetric(horizontal: 4.0),
-          tabs: [
-            Tab(text: '총학생회'),
-            Tab(text: '과학생회'),
-            Tab(text: '학과 공지'),
-            Tab(text: '신청/모집'),
-          ],
-        ),
-      ),
+          preferredSize: const Size.fromHeight(50.0),
+          child: SizedBox(
+            height: 50.0,
+            child: TabBar(
+              controller: _tabController,
+              labelColor: Color(0xFFB1589D),
+              unselectedLabelColor: Color.fromARGB(255, 114, 116, 118),
+              labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+              indicator: BoxDecoration(),
+              indicatorColor: Colors.transparent,
+              indicatorWeight: 0.0,
+              dividerColor: Colors.transparent,
+              labelPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              tabs: [
+                Tab(text: '총학생회'),
+                Tab(text: '과학생회'),
+                Tab(text: '학과 공지'),
+                Tab(text: '신청/모집'),
+              ],
+            ),
+          )),
       body: TabBarView(
         controller: _tabController,
         children: [

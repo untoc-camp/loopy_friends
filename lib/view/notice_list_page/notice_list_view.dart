@@ -100,6 +100,7 @@ class NoticeListView extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15.0),
+                      border: Border.all(color: Color(0xFFB1589D).withOpacity(0.2), width: 2.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.1),
