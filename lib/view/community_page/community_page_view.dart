@@ -10,27 +10,27 @@ class CommunityPageView extends StatelessWidget {
     final PostController postController = Get.put(PostController());
 
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // SizedBox(
-              //   height: 10,
-              // ),
-              const Text(
-                '✨정컴이들의 게시판✨',
-                style: TextStyle(
-                  // fontWeight: FontWeight.bold,
-                  fontSize: 16,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+            automaticallyImplyLeading: false,
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  '✨정컴이들의 게시판✨',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 246, 246, 246),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           child: Obx(() {
             var reversedPosts = postController.posts.reversed.toList();
             return ListView.builder(
