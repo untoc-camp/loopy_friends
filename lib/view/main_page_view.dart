@@ -78,7 +78,7 @@ class MainPageView extends StatelessWidget {
                   children: [
                     Image.asset(
                       "assets/selon_Logo_with_text.png",
-                      height: 45,
+                      height: 70,
                     ),
                     const Spacer(),
                     IconButton(
