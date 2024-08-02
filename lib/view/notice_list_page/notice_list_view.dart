@@ -68,7 +68,7 @@ class NoticeListView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 246, 246, 246),
       body: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         child: Obx(() {
           return RefreshIndicator(
             onRefresh: _refreshData,
@@ -93,64 +93,69 @@ class NoticeListView extends StatelessWidget {
                       Get.to(() => DetailPageView(), arguments: data[reversedIndex]);
                     }
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 3.0),
-                    child: Container(
-                      width: double.infinity,
-                      constraints: BoxConstraints(minHeight: 100),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 212, 221, 232),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (data[reversedIndex].deadline != '없음')
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      data[reversedIndex].title,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    calculateDday(deadline),
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 13),
+                    width: double.infinity,
+                    constraints: BoxConstraints(minHeight: 100),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(2, 5),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data[reversedIndex].title,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          if (data[reversedIndex].deadline != '없음')
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    data[reversedIndex].created_at,
                                     style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF5C5F64),
+                                      fontSize: 12,
                                     ),
                                   ),
-                                ],
-                              )
-                            else
-                              Text(
-                                data[reversedIndex].title,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
                                 ),
-                              ),
-                            SizedBox(height: 10),
+                                Text(
+                                  calculateDday(deadline),
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            )
+                          else
                             Text(
                               data[reversedIndex].created_at,
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                                color: Color(0xFF5C5F64),
+                                fontSize: 12,
                               ),
                             ),
-                          ],
-                        ),
+                        ],
                       ),
                     ),
                   ),
