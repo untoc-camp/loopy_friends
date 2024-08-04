@@ -58,7 +58,7 @@ class _ContactCollectionViewState extends State<ContactCollectionView> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Get.toNamed('/setting');
           },
         ),
         title: Text('문의 내역'),
