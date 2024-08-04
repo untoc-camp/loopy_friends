@@ -4,6 +4,7 @@ import '../../../constants/url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 class ContactCollectionView extends StatefulWidget {
   const ContactCollectionView({super.key});
 
@@ -21,35 +22,38 @@ class _ContactCollectionViewState extends State<ContactCollectionView> {
   }
 
   void fetchContactHistory() async {
-  final prefs = await SharedPreferences.getInstance();
-  final accessToken = prefs.getString('access_token');
-  var url = Uri.parse('${Urls.apiUrl}mycontact');
-  try {
-    var response = await http.get(url, headers: {
-      "Authorization": "Bearer $accessToken", // 필요하다면 토큰 추가
-    });
-
-    if (response.statusCode == 200) {
-      String bodyUtf8 = utf8.decode(response.bodyBytes);
-      var data = json.decode(bodyUtf8) as List;
-      List<Map<String, String?>> contactData = data.map((item) => {
-        'inquiry': item['content'] as String?,
-        'response': item['answer'] as String?
-      }).toList();
-
-      setState(() {
-        contactHistory = contactData;
+    final prefs = await SharedPreferences.getInstance();
+    final accessToken = prefs.getString('access_token');
+    var url = Uri.parse('${Urls.apiUrl}mycontact');
+    try {
+      var response = await http.get(url, headers: {
+        "Authorization": "Bearer $accessToken", // 필요하다면 토큰 추가
       });
-    } else {
-      throw Exception('Failed to load contact history');
+
+      if (response.statusCode == 200) {
+        String bodyUtf8 = utf8.decode(response.bodyBytes);
+        var data = json.decode(bodyUtf8) as List;
+        List<Map<String, String?>> contactData = data.map((item) => {
+          'inquiry': item['content'] as String?,
+          'response': item['answer'] as String?
+        }).toList();
+
+        // 최근 문의 내역이 위로 오도록 리스트를 뒤집습니다.
+        contactData = contactData.reversed.toList();
+
+        setState(() {
+          contactHistory = contactData;
+        });
+      } else {
+        throw Exception('Failed to load contact history');
+      }
+    } catch (e) {
+      print('Error: $e');
+      setState(() {
+        contactHistory = []; // 오류 시 데이터 초기화
+      });
     }
-  } catch (e) {
-    print('Error: $e');
-    setState(() {
-      contactHistory = []; // 오류 시 데이터 초기화
-    });
   }
-}
 
   @override
   Widget build(BuildContext context) {
